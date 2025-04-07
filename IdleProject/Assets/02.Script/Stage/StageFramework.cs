@@ -80,11 +80,10 @@ public abstract class StageFramework
             }
             catch(System.OperationCanceledException)
             {
-                CurrentFrameworkState = eStageFrameworkState.Cancel;
+                CurrentFrameworkState = eStageFrameworkState.Defeat;
             }
             finally
             {
-                Debug.Log($"결과는{CurrentFrameworkState}");
                 //결과창 보여주기
                 //if (frameworkCTS.IsCancellationRequested == false)
                 //    UIManager.Instance.ResultPopUpUI.Enable();
@@ -102,29 +101,32 @@ public abstract class StageFramework
 
     #region Stage Stop Method
     //프로세스를 멈추고 결과창을 보여준다 .
-    public void StopFramework(bool skipResult)
+    public void StopFramework(bool isDie=true)
     {
         if (frameworkState == eStageFrameworkState.InProgress)
             frameworkCTS.Cancel();
 
-        StopFrameworkAsync(skipResult).Forget();
+        StopFrameworkAsync(isDie).Forget();
     }
     //
-    async UniTask StopFrameworkAsync(bool skipResult)
+    async UniTask StopFrameworkAsync(bool isDie)
     {
         await UniTask.WaitUntil(() => frameworkState != eStageFrameworkState.InProgress);
         OnStopFramework();
 
-        if (skipResult)
+        if (isDie)
+        // UIManager.Instance.ResultPopUpUI.Enable();
+        // else
+        {
+            //루프에서 보스도전 눌렀을 경우
+            CurrentFrameworkState = eStageFrameworkState.Victory;
             CleanFramework();
-       // else
-           // UIManager.Instance.ResultPopUpUI.Enable();
+        }
     }
     //스테이지의 초기화를 진행한다
     //Remove Dynamic Things
     protected virtual void OnStopFramework()
     {
-        CurrentFrameworkState = eStageFrameworkState.Defeat;
         //Player
         //Player.UnRegisterPlayer();
         //ActorManager.Instance.Clear();
@@ -132,29 +134,23 @@ public abstract class StageFramework
     #endregion
 
     #region Stage Clean Method
+    //Remove Static Things
     //이건 요소들을 모두 초기화 하고 다음 스테이지로 나아가기 위함
     public void CleanFramework()
     {
-        CurrentFrameworkState = eStageFrameworkState.Clean;
-        OnCleanFramework();
-        //스테이지 나가기 까지 처리
-    }
-    //Remove Static Things
-    protected virtual void OnCleanFramework()
-    {
-        //BG
-        //BackgroundManager.Instance.HideBackground();
-        //UI
-        UIManager.Instance.GameUI.CloseUIByFlag(eUI.Controller | eUI.BattleState);
+        //UIManager.Instance.GameUI.CloseUIByFlag(eUI.Controller | eUI.BattleState);
         ExitStage(1f).Forget();
     }
     async UniTask ExitStage(float time)
     {
         await UniTask.WaitForSeconds(time);
-        //성공 - 실패 유무에 따라 다른 인덱스 사용
-        StageManager.Instance.SetupStage(eContentsType.Normal,Data.FailedIndex);
-        //SceneManager.Instance.AsyncSceneChange<LobbyScene>().Forget();
-    }
 
+        if (CurrentFrameworkState == eStageFrameworkState.Victory)
+            StageManager.Instance.SetupStage(eContentsType.Normal, Data.SuccessIndex);
+        else
+            StageManager.Instance.SetupStage(eContentsType.Normal, Data.FailedIndex);
+
+        CurrentFrameworkState = eStageFrameworkState.Clean;
+    }
     #endregion
 }

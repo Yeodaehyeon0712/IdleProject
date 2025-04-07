@@ -158,7 +158,6 @@ public enum eStageFrameworkState
     InProgress,
     Victory,
     Defeat,
-    Cancel,
     Clean,
 }
 #endregion
