@@ -140,6 +140,11 @@ public enum ePostEffectType
 #endregion
 
 #region Stage
+public enum eContentsType
+{
+    Normal,
+    End,
+}
 public enum eStageType
 {
     Race,

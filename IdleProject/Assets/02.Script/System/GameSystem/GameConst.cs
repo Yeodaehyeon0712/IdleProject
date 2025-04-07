@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class GameConst
 {
+    #region Stage
+    public static int RaceStageCount = 5;
+    #endregion
+
     #region Data
     public static Dictionary<long, string> LongToString;
     public static Dictionary<string, long> StringToLong;
+
     #endregion
 
     #region Camera
