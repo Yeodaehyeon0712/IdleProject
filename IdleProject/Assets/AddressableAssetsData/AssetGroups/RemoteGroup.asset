@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: RemoteGroup
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: RemoteGroup
   m_Data:
     m_SerializedData: []
   m_GUID: 4d376524d02b3794f987868462d507ad
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 43d2085cec02c6d4c94a9a74c292e99d
+    m_Address: Table
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    - Table
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f09ea225085418e44bb3316295057c06, type: 2}
   m_SchemaSet:

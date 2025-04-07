@@ -17,7 +17,7 @@ MonoBehaviour:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
-  m_BuildRemoteCatalog: 0
+  m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
   m_CatalogRequestsTimeout: 0
   m_DisableCatalogUpdateOnStart: 0
@@ -34,12 +34,12 @@ MonoBehaviour:
   m_MonoScriptBundleNaming: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: 
+    m_Id: e0ee2c3aa4db11549b1fb94a931ae7d3
   m_RemoteCatalogLoadPath:
-    m_Id: 
+    m_Id: a6541b20fa912eb40a98a8a147a02146
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
-  m_overridePlayerVersion: 
+  m_overridePlayerVersion: 1
   m_GroupAssets:
   - {fileID: 11400000, guid: 07401789c9647c6408e32f42e07844c8, type: 2}
   - {fileID: 11400000, guid: 7577c603376f38a4da5976d658ef2dcc, type: 2}
@@ -64,6 +64,20 @@ MonoBehaviour:
         m_Value: ServerData/[BuildTarget]
       - m_Id: a6541b20fa912eb40a98a8a147a02146
         m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+    - m_InheritedParent: 
+      m_Id: 7d56ad4882c6f694d9076789c68b73ad
+      m_ProfileName: Firebase_Test
+      m_Values:
+      - m_Id: 776ef6614de1f324dbf20df39544156b
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 91637ca59f760b54292cded570fff14f
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 326589edec497224492ca1663fd80c1e
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: e0ee2c3aa4db11549b1fb94a931ae7d3
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: a6541b20fa912eb40a98a8a147a02146
+        m_Value: gs://gugu-2fde5.appspot.com/Test/[BuildTarget]
     m_ProfileEntryNames:
     - m_Id: 776ef6614de1f324dbf20df39544156b
       m_Name: BuildTarget
@@ -84,6 +98,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Table
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: c5bc7e7a28237954b9eb18075e573d5d, type: 2}
@@ -97,7 +112,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3ca6727adcf51184f9f59f6b2e6c8e3d, type: 2}
   - {fileID: 11400000, guid: d999d217cef98514581a68ebcb2f0a3f, type: 2}
   - {fileID: 11400000, guid: c7cfe83888fef074aadb9a57db4a6463, type: 2}
-  m_ActiveProfileId: 0b4e9b0ba2b392e479ee82aad203d8ff
+  - {fileID: 11400000, guid: 63d3d9ff1f59dbc42986dbd767c9cd74, type: 2}
+  m_ActiveProfileId: 7d56ad4882c6f694d9076789c68b73ad
   m_HostingServicesManager:
     m_HostingServiceInfos: []
     m_Settings: {fileID: 11400000}
