@@ -7,6 +7,8 @@ public class GameConst
 {
     #region Stage
     public static int RaceStageCount = 5;
+    public static int BackgroundOffsetX = 36;
+    public static int MaxBackgroundCount = 3;
     #endregion
 
     #region Data

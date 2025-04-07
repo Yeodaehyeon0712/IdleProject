@@ -13,7 +13,7 @@ namespace Data
         //HP
         //Attack
         //Gold
-        //BG
+        public readonly string BackgroundKey; 
 
         public StageData(int index, Dictionary<string, string> dataPair)
         {
@@ -25,7 +25,7 @@ namespace Data
             //HP
             //Attack
             //Gold
-            //BG Key
+            BackgroundKey = dataPair["BackgroundKey"];
         }
     }
 

@@ -51,7 +51,7 @@ public abstract class StageFramework
         //UI
         UIManager.Instance.Stage.CurrentStage = Data.Type;
         //Background
-
+        BackgroundManager.Instance.SetupBackground(CameraManager.Instance.GetCamera(eCameraType.MainCamera).transform, Data.BackgroundKey);
         //각종 요소들 소환
         //캐릭터 - 맵 - 사운드 등등
 
