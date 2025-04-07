@@ -21,14 +21,14 @@ public class GameUI : MonoBehaviour
 
         //Lobby Scene
         var groupBattleSceneUI = safeArea.Find("Group_BattleSceneUI");
-        MenuButton = groupBattleSceneUI.Find("MenuButtonUI").GetComponent<MenuButtonUI>();
-        uiDic.Add(eUI.MenuButton, MenuButton.Initialize());
-        Main = groupBattleSceneUI.Find("MainUI").GetComponent<MainUI>();
-        uiDic.Add(eUI.Main, Main.Initialize());
-        PlayerInfo= groupBattleSceneUI.Find("PlayerInfoUI").GetComponent<PlayerInfoUI>();
+        PlayerInfo= groupBattleSceneUI.Find("Panel_Top/PlayerInfoUI").GetComponent<PlayerInfoUI>();
         uiDic.Add(eUI.PlayerInfo,PlayerInfo.Initialize());
-        Stage= groupBattleSceneUI.Find("StageUI").GetComponent<StageUI>();
+        Stage= groupBattleSceneUI.Find("Panel_Top/StageUI").GetComponent<StageUI>();
         uiDic.Add(eUI.Stage,Stage.Initialize());
+        Main = groupBattleSceneUI.Find("Panel_Middle/MainUI").GetComponent<MainUI>();
+        uiDic.Add(eUI.Main, Main.Initialize());
+        MenuButton = groupBattleSceneUI.Find("Panel_Bottom/MenuButtonUI").GetComponent<MenuButtonUI>();
+        uiDic.Add(eUI.MenuButton, MenuButton.Initialize());
     }
     void InitializeSafeArea(Transform safeArea)
     {

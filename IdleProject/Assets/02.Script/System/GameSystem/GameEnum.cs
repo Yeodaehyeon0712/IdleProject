@@ -220,17 +220,10 @@ public enum eItemType
 [System.Flags]//31 is Maximum Value
 public enum eUI
 {
-    Controller = 1 << 0,
-    BattleState = 1 << 1,
-    BattlePausePopUp = 1 << 2,
-    AlramPopUp = 1 << 3,
-    SettingPopUp=1<<4,
-    LevelUpPopUp=1<<5,
-    ResultPopUp = 1 << 6,
-    MenuButton=1<<7,
-    Main=1<<8,
-    PlayerInfo=1<<9,
-    Stage=1<<10,
+    MenuButton=1<<0,
+    Main=1<<1,
+    PlayerInfo=1<<2,
+    Stage=1<<3,
 }
 public enum eMovableUIDir
 {
