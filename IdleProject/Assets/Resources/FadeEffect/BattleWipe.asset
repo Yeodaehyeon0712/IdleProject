@@ -41,10 +41,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
+    - _Alpha: 0
     - _Amplitude: 1
     - _Angle: 1
-    - _Delta: 1
+    - _Delta: 0
     - _DomainStretch: 1
     - _Frequency: 1
     - _Softness: 1

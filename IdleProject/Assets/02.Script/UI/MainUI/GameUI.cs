@@ -11,6 +11,7 @@ public class GameUI : MonoBehaviour
     public MainUI Main;
     public MenuButtonUI MenuButton;
     public PlayerInfoUI PlayerInfo;
+    public StageUI Stage;
     #endregion
 
     public void Initialize()
@@ -26,6 +27,8 @@ public class GameUI : MonoBehaviour
         uiDic.Add(eUI.Main, Main.Initialize());
         PlayerInfo= groupBattleSceneUI.Find("PlayerInfoUI").GetComponent<PlayerInfoUI>();
         uiDic.Add(eUI.PlayerInfo,PlayerInfo.Initialize());
+        Stage= groupBattleSceneUI.Find("StageUI").GetComponent<StageUI>();
+        uiDic.Add(eUI.Stage,Stage.Initialize());
     }
     void InitializeSafeArea(Transform safeArea)
     {

@@ -230,6 +230,7 @@ public enum eUI
     MenuButton=1<<7,
     Main=1<<8,
     PlayerInfo=1<<9,
+    Stage=1<<10,
 }
 public enum eMovableUIDir
 {
