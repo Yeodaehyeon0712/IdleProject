@@ -9,8 +9,8 @@ public class UIManager : TSingletonMono<UIManager>
     public GameUI GameUI => _gameUI;
     GameUI _gameUI;
 
-
-   
+    //Battle Scene UI
+    public MenuButtonUI MenuButtonUI => _gameUI.MenuButton;
     #endregion
 
     protected override void OnInitialize()
@@ -28,7 +28,7 @@ public class UIManager : TSingletonMono<UIManager>
         if(targetCamera!=null)
         {
             canvas.worldCamera = targetCamera;
-            canvas.planeDistance = 5;
+            canvas.planeDistance = 1;
         }
 
         if (scaler != null)

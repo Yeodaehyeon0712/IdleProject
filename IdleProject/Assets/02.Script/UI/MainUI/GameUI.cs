@@ -7,7 +7,9 @@ public class GameUI : MonoBehaviour
     #region Fields
     Dictionary<eUI, BaseUI> uiDic = new Dictionary<eUI,BaseUI>();
 
-    
+    //Battle Scene UI
+    public MenuButtonUI MenuButton;
+
     #endregion
 
     public void Initialize()
@@ -15,37 +17,10 @@ public class GameUI : MonoBehaviour
         Transform safeArea = transform.Find("SafeArea");
         InitializeSafeArea(safeArea);
 
-        ////Lobby Scene
-        //var groupLobbySceneUI = safeArea.Find("Group_LobbySceneUI");
-        //MenuButton = groupLobbySceneUI.Find("MenuButtonUI").GetComponent<MenuButtonUI>();
-        //uiDic.Add(eUI.MenuButton, MenuButton.Initialize());
-        //Lobby= groupLobbySceneUI.Find("LobbyUI").GetComponent<LobbyUI>();
-        //uiDic.Add(eUI.Lobby, Lobby.Initialize());
-        //PlayerInfo = groupLobbySceneUI.Find("PlayerInfoUI").GetComponent<PlayerInfoUI>();
-        //uiDic.Add(eUI.PlayerInfo, PlayerInfo.Initialize());
-
-        ////Battle Scene UI
-        //var groupBattleSceneUI = safeArea.Find("Group_BattleSceneUI");
-        //Controller = groupBattleSceneUI.Find("ControllerUI").GetComponent<ControllerUI>();
-        //uiDic.Add(eUI.Controller, Controller.Initialize());
-        //BattleState = groupBattleSceneUI.Find("BattleStateUI").GetComponent<BattleStateUI>();
-        //uiDic.Add(eUI.BattleState,BattleState.Initialize());
-
-        ////PopUp UI
-        //var groupPopUp = safeArea.Find("Group_PopUp");
-        //PausePopUp = groupPopUp.Find("PausePopUpUI").GetComponent<PausePopUpUI>();
-        //uiDic.Add(eUI.BattlePausePopUp,PausePopUp.Initialize());
-        //LevelUpPopUp= groupPopUp.Find("LevelUpPopUpUI").GetComponent<LevelUpPopUpUI>();
-        //uiDic.Add(eUI.LevelUpPopUp, LevelUpPopUp.Initialize());
-        //ResultPopUp=groupPopUp.Find("ResultPopUpUI").GetComponent<ResultPopUpUI>();
-        //uiDic.Add(eUI.ResultPopUp, ResultPopUp.Initialize());
-
-        ////OverPopUp UI
-        //var groupOverPopUp = safeArea.Find("Group_OverPopUp");
-        //SettingPopUp = groupOverPopUp.Find("SettingPopUpUI").GetComponent<SettingPopUpUI>();
-        //uiDic.Add(eUI.SettingPopUp, SettingPopUp.Initialize());
-        //AlramPopUp= groupOverPopUp.Find("AlramPopUpUI").GetComponent<AlramPopUpUI>();
-        //uiDic.Add(eUI.AlramPopUp, AlramPopUp.Initialize());
+        //Lobby Scene
+        var groupLobbySceneUI = safeArea.Find("Group_BattleSceneUI");
+        MenuButton = groupLobbySceneUI.Find("MenuButtonUI").GetComponent<MenuButtonUI>();
+        uiDic.Add(eUI.MenuButton, MenuButton.Initialize());
     }
     void InitializeSafeArea(Transform safeArea)
     {
