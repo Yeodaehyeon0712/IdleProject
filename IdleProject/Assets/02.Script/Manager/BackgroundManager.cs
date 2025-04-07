@@ -27,7 +27,7 @@ public class BackgroundManager : TSingletonMono<BackgroundManager>
         {
             var position = new Vector3(GameConst.BackgroundOffsetX * (i - 1), 0, 0);
             backgrounds[i] = Instantiate(prefab, position, Quaternion.identity, transform);
-            backgrounds[i].Disable();
+            backgrounds[i].Initialize();
             backgroundOrderQueue.Enqueue(i);
         }
     }

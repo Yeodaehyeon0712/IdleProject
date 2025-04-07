@@ -8,6 +8,7 @@ public class Background : MonoBehaviour
     public Background Initialize()
     {
         _renderer = GetComponent<SpriteRenderer>();
+        Disable();
         return this;
     }
     public void Enable()
@@ -21,6 +22,7 @@ public class Background : MonoBehaviour
     public void SetupBackground(Sprite sprite)
     {
         _renderer.sprite = sprite;
+        Enable();
     }
     public void CleanBackground()
     {
