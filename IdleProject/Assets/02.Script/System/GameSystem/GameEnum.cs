@@ -87,6 +87,7 @@ enum eAddressableState
     DownloadDependencies,
     LoadMemory,
     TableMemory,
+    BackgroundMemory,
     Complete,
 }
 #endregion

@@ -17,6 +17,8 @@ public class AddressableSystem
     public bool IsLoad;
     Dictionary<string, GameObject> assetResourceContainer = new Dictionary<string, GameObject>();
     Dictionary<string, TextAsset> tableContainer = new Dictionary<string, TextAsset>();
+    Dictionary<string, Sprite> backgroundContainer = new Dictionary<string,Sprite>();
+
     #endregion
 
     public void Initialize()
@@ -108,6 +110,7 @@ public class AddressableSystem
         await locatorHandle.ToUniTask();
 
         await LoadAssetAsync(eAddressableState.TableMemory,tableContainer);
+        await LoadAssetAsync(eAddressableState.BackgroundMemory, backgroundContainer);
 
         state = eAddressableState.Complete;
     }
@@ -164,6 +167,16 @@ public class AddressableSystem
         }
 
         Debug.LogError($"Database with resource path {key} not found in the database container.");
+        return null;
+    }
+    public static Sprite GetBackground(string key)
+    {
+        if (DataManager.AddressableSystem.backgroundContainer.TryGetValue(key, out var background))
+        {
+            return background;
+        }
+
+        Debug.LogError($"Background with resource path {key} not found in the background container.");
         return null;
     }
     #endregion

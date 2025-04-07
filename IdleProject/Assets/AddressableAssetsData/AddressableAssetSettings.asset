@@ -99,6 +99,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - Table
+    - Background
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: c5bc7e7a28237954b9eb18075e573d5d, type: 2}
