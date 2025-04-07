@@ -12,6 +12,8 @@ public class UIManager : TSingletonMono<UIManager>
     //Battle Scene UI
     public MainUI MainUI => _gameUI.Main;
     public MenuButtonUI MenuButtonUI => _gameUI.MenuButton;
+    public PlayerInfoUI PlayerInfo=>_gameUI.PlayerInfo;
+    public StageUI Stage=>_gameUI.Stage;
     #endregion
 
     protected override void OnInitialize()
@@ -39,5 +41,13 @@ public class UIManager : TSingletonMono<UIManager>
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
             scaler.matchWidthOrHeight = 1F;
         }
+    }
+    public void OpenUIByFlag(eUI flaggedEnum)
+    {
+        _gameUI.OpenUIByFlag(flaggedEnum);
+    }
+    public void CloseUIByFlag(eUI flaggedEnum)
+    {
+        _gameUI.CloseUIByFlag(flaggedEnum);
     }
 }

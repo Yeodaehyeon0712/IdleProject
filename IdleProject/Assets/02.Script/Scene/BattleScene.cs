@@ -6,6 +6,7 @@ public class BattleScene : BaseScene
 {
     protected override void OnStartScene()
     {
+        UIManager.Instance.OpenUIByFlag(eUI.MenuButton | eUI.Main | eUI.PlayerInfo);
         StageManager.Instance.SetupStage(eContentsType.Normal, 1);
     }
 

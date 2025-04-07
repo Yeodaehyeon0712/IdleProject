@@ -6,7 +6,7 @@ public class MenuButtonUI :BaseUI
 {
     #region Fields
     Dictionary<eMainUI, MenuButtonUIElement> buttonDic=new Dictionary<eMainUI, MenuButtonUIElement>();
-    eMainUI currentMenu;
+    eMainUI currentMenu=eMainUI.Store;
 
     public eMainUI CurrentMenu
     {
