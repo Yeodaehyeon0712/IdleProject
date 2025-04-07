@@ -34,10 +34,15 @@ public class GameConst
 
     #region Enum Converter
     public static Dictionary<string, eStageType> StageType;
+    public static Dictionary<string, eStatusType> StatusType;
+    public static Dictionary<string, eCalculateType> CalculateType;
+
 
     public static void InitializeEnumConverter()
     {
         OnGenerateEnumContainer(ref StageType);
+        OnGenerateEnumContainer(ref StatusType);
+        OnGenerateEnumContainer(ref CalculateType);
     }
     public static void ClearEnumConverter()
     {

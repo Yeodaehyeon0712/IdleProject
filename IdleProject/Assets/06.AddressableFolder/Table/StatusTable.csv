@@ -1,0 +1,6 @@
+Index,Type,DefaultValue,CalculateType,MaxLevel,ValueCalculator,GoldCalculator,IconPath,NameKey,ExplanationKey
+1,AttackDamage,50,Flat,100,10*x,100+(50*x),Icon/Status/AttackDamage.png,1,11
+2,MaxHP,500,Flat,100,100*x,120+(60*x),Icon/Status/MaxHP.png,2,12
+3,MoveSpeed,1,Flat,50,0.2x,150+(70*x),Icon/Status/MoveSpeed.png,3,13
+4,CriticalChance,5,Percentage,30,x,300+(100*x),Icon/Status/CriticalChance.png,4,14
+5,CriticalDamage,50,Percentage,50,5*x,250+(90*x),Icon/Status/CriticalDamage.png,5,15

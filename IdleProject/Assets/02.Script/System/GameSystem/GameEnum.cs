@@ -36,22 +36,11 @@ public enum eSkillState
 }
 public enum eStatusType
 {
+    AttackDamage,
     MaxHP,
-    Recovery,
-    Armor,
     MoveSpeed,
-    Might,
-    ProjectileSpeed,
-    Duration,
-    Area,
-    CoolTime,
-    Amount,
-    Revival,
-    Magnet,
-    Luck,
-    Growth,
-    Greed,
-    Curse,
+    CriticalChance,
+    CriticalDamage,
 }
 public enum eCalculateType
 {
@@ -76,6 +65,7 @@ public enum eTableName
 {
     LocalizingTable = 1 << 0,
     StageTable=1<<1,
+    StatusTable=1<<2,
     All = ~0,
 }
 

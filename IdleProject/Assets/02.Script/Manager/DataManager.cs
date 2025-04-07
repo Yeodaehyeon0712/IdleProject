@@ -7,6 +7,7 @@ public class DataManager : TSingletonMono<DataManager>
     public static AddressableSystem AddressableSystem;
     public static LocalizingTable LocalizingTable;
     public static StageTable StageTable;
+    public static StatusTable StatusTable;
 
     protected override void OnInitialize()
     {
@@ -14,6 +15,8 @@ public class DataManager : TSingletonMono<DataManager>
         LocalizingTable.Reload();
         StageTable = LoadTable<StageTable>(eTableName.StageTable);
         StageTable.Reload();
+        StatusTable = LoadTable<StatusTable>(eTableName.StatusTable);
+        StatusTable.Reload();
         IsLoad = true;
     }
     public void InitAddressableSystem()
