@@ -40,6 +40,9 @@ public class TitleScene : BaseScene
         DataManager.Instance.Initialize();
         await UniTask.WaitUntil(() => DataManager.Instance.IsLoad);
 
+        CameraManager.Instance.Initialize();
+        await UniTask.WaitUntil(() => CameraManager.Instance.IsLoad);
+
         text_Description.text = "Complete";
         button_NextScene.gameObject.SetActive(true);
     }

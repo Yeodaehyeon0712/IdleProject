@@ -171,10 +171,28 @@ public enum eStageFrameworkState
 
 #region Camera
 public enum eCameraType
-    {
-        MainCamera,
-        VirtualCamera,
-    }
+{
+    MainCamera,
+    UICamera,
+}
+public enum eCameraFadeType
+{
+    BandWipe,
+    BarnDoorOpenVertical,
+    BarnDoorStretch,
+    BattleWipe,
+    BattleWipeExtreme,
+    Blur,
+    Fade,
+    Rubicks,
+    RubicksHorizontal,
+    RubicksVertical,
+    Zoom,
+    ZoomCustom,
+    ZoomSmall,
+    WhiteFade,
+    End,
+}
 #endregion
 
 #region Reposition

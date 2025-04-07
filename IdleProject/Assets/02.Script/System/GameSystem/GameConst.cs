@@ -12,6 +12,7 @@ public class GameConst
 
     #region Camera
     public static Vector2 defaultResolution = new Vector2(1080, 1920);
+    public static Vector3 ViewOffset = new Vector3(8f, 3f);
     #endregion
 
     #region Path
