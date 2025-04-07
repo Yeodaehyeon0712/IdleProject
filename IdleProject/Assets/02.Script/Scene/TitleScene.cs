@@ -43,6 +43,9 @@ public class TitleScene : BaseScene
         CameraManager.Instance.Initialize();
         await UniTask.WaitUntil(() => CameraManager.Instance.IsLoad);
 
+        LocalizingManager.Instance.Initialize();
+        await UniTask.WaitUntil(() => LocalizingManager.Instance.IsLoad);
+
         text_Description.text = "Complete";
         button_NextScene.gameObject.SetActive(true);
     }
