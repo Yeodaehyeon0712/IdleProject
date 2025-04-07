@@ -26,20 +26,11 @@ public class GameConst
     #endregion
 
     #region Enum Converter
-    public static Dictionary<string, eEffectChainCondition> EffectChainType;
-    public static Dictionary<string, eStatusType> StatusType;
-    public static Dictionary<string, eCalculateType> CalculateType;
-    public static Dictionary<string, eModifierType> ModifierType;
-    public static Dictionary<string, eItemType> ItemType;
-
+    public static Dictionary<string, eStageType> StageType;
 
     public static void InitializeEnumConverter()
     {
-        OnGenerateEnumContainer(ref EffectChainType);
-        OnGenerateEnumContainer(ref StatusType);
-        OnGenerateEnumContainer(ref CalculateType);
-        OnGenerateEnumContainer(ref ModifierType);
-        OnGenerateEnumContainer(ref ItemType);
+        OnGenerateEnumContainer(ref StageType);
     }
     public static void ClearEnumConverter()
     {

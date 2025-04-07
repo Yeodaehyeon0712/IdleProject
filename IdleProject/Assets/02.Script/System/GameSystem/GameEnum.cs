@@ -75,15 +75,7 @@ public enum eAttachmentTarget
 public enum eTableName
 {
     LocalizingTable = 1 << 0,
-    CharacterTable = 1 << 1,
-    EnemyTable  =   1 << 2,
-    WaveTable = 1 << 3,
-    StageTable = 1 << 4,
-    SkillTable=1<<5,
-    EffectTable=1<<6,
-    StatusTable=1<<7,
-    ItemTable = 1 << 8,
-    EquipmentTable=1<<9,
+    StageTable=1<<1,
     All = ~0,
 }
 
@@ -150,8 +142,9 @@ public enum ePostEffectType
 #region Stage
 public enum eStageType
 {
-    Normal,
-    End
+    Race,
+    Boss,
+    Loop
 }
 public enum eStageFrameworkState
 {
