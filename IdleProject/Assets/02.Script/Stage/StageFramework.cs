@@ -43,13 +43,14 @@ public abstract class StageFramework
     //각종 스테이지에 대한 공통된 준비
     public virtual async UniTask SetupFrameworkAsync(int stageIndex)
     {
-        Debug.Log("각종 스테이지에 대한 공통된 준비 시작");
-        this.stageIndex = stageIndex;
         CurrentFrameworkState = eStageFrameworkState.SetUp;
-
+        this.stageIndex = stageIndex;
         //Camera
         CameraManager.Instance.FadeOn(eCameraFadeType.BattleWipe, 1f, null);
         await UniTask.WaitForSeconds(1f);
+        //UI
+        UIManager.Instance.Stage.CurrentStage = Data.Type;
+        //Background
 
         //각종 요소들 소환
         //캐릭터 - 맵 - 사운드 등등
@@ -61,8 +62,6 @@ public abstract class StageFramework
         //Bg
         // BackgroundManager.Instance.ShowBackgroundByStage(DataManager.StageTable[stageIndex].BackgroundPath);
 
-        //UI
-        //UIManager.Instance.GameUI.OpenUIByFlag(eUI.Controller | eUI.BattleState);
 
         Debug.Log("각종 스테이지에 대한 공통된 준비 완료");
     }

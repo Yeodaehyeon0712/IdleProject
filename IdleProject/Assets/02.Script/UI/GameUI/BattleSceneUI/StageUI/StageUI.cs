@@ -13,12 +13,12 @@ public class StageUI : BaseUI
         get => currentStage;
         set
         {
-            if (value == currentStage)
-                return;
+            //if (value == currentStage)
+            //    return;
 
-            stageUIDic[currentStage].Enable();
-            currentStage = value;
             stageUIDic[currentStage].Disable();
+            currentStage = value;
+            stageUIDic[currentStage].Enable();
         }
     }
     #endregion
