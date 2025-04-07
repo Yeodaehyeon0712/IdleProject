@@ -18,6 +18,9 @@ public class LogoScene : BaseScene
     {
         SceneManager.Instance.InitSceneManager(this);
         await UniTask.WaitUntil(() => SceneManager.Instance.IsLoad);
+        RuntimePreference.Instance.Initialize();
+        await UniTask.WaitUntil(() => RuntimePreference.Instance.IsLoad);
+        GameConst.Initialize();
         StartScene();
     }
 
