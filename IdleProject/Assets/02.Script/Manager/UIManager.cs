@@ -10,6 +10,7 @@ public class UIManager : TSingletonMono<UIManager>
     GameUI _gameUI;
 
     //Battle Scene UI
+    public MainUI MainUI => _gameUI.Main;
     public MenuButtonUI MenuButtonUI => _gameUI.MenuButton;
     #endregion
 

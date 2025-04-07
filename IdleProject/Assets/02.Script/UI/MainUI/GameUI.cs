@@ -8,8 +8,9 @@ public class GameUI : MonoBehaviour
     Dictionary<eUI, BaseUI> uiDic = new Dictionary<eUI,BaseUI>();
 
     //Battle Scene UI
+    public MainUI Main;
     public MenuButtonUI MenuButton;
-
+    
     #endregion
 
     public void Initialize()
@@ -18,9 +19,11 @@ public class GameUI : MonoBehaviour
         InitializeSafeArea(safeArea);
 
         //Lobby Scene
-        var groupLobbySceneUI = safeArea.Find("Group_BattleSceneUI");
-        MenuButton = groupLobbySceneUI.Find("MenuButtonUI").GetComponent<MenuButtonUI>();
+        var groupBattleSceneUI = safeArea.Find("Group_BattleSceneUI");
+        MenuButton = groupBattleSceneUI.Find("MenuButtonUI").GetComponent<MenuButtonUI>();
         uiDic.Add(eUI.MenuButton, MenuButton.Initialize());
+        Main = groupBattleSceneUI.Find("MainUI").GetComponent<MainUI>();
+        uiDic.Add(eUI.Main, Main.Initialize());
     }
     void InitializeSafeArea(Transform safeArea)
     {

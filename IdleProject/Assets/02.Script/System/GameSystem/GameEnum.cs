@@ -231,7 +231,7 @@ public enum eUI
     LevelUpPopUp=1<<5,
     ResultPopUp = 1 << 6,
     MenuButton=1<<7,
-    Lobby=1<<8,
+    Main=1<<8,
     PlayerInfo=1<<9,
 }
 public enum eMovableUIDir
@@ -252,12 +252,12 @@ public enum eFieldUI
     HPBar,
     DamageText,
 }
-public enum eLobbyUI
+public enum eMainUI
 {
+    Status,
+    Item,
+    Skill,
+    Partner,
     Store,
-    Temp1,
-    Battle,
-    Temp2,
-    Enforce,
 }
 #endregion
