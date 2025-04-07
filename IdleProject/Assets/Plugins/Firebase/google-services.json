@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "592663230145",
+    "project_id": "idleproject-3588f",
+    "storage_bucket": "idleproject-3588f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592663230145:android:0ee4a9fa99d632b7b60640",
+        "android_client_info": {
+          "package_name": "com.oey.idleproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPZud0hbPB8-DNr4Fh67DnxDOpg7zdmzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
