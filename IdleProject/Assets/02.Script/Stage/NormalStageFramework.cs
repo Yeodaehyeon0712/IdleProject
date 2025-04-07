@@ -32,7 +32,7 @@ public class NormalStageFramework : StageFramework
         while (frameworkState==eStageFrameworkState.InProgress)
         {
             ++currentStageProgress;
-            if (currentStageProgress >= GameConst.RaceStageCount)
+            if (currentStageProgress > GameConst.RaceStageCount)
             {
                 Debug.Log("½Â¸®");
                 frameworkState = eStageFrameworkState.Victory;
