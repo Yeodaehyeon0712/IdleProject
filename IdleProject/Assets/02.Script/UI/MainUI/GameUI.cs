@@ -10,7 +10,7 @@ public class GameUI : MonoBehaviour
     //Battle Scene UI
     public MainUI Main;
     public MenuButtonUI MenuButton;
-    
+    public PlayerInfoUI PlayerInfo;
     #endregion
 
     public void Initialize()
@@ -24,6 +24,8 @@ public class GameUI : MonoBehaviour
         uiDic.Add(eUI.MenuButton, MenuButton.Initialize());
         Main = groupBattleSceneUI.Find("MainUI").GetComponent<MainUI>();
         uiDic.Add(eUI.Main, Main.Initialize());
+        PlayerInfo= groupBattleSceneUI.Find("PlayerInfoUI").GetComponent<PlayerInfoUI>();
+        uiDic.Add(eUI.PlayerInfo,PlayerInfo.Initialize());
     }
     void InitializeSafeArea(Transform safeArea)
     {
