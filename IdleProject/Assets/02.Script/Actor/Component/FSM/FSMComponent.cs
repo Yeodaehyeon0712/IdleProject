@@ -5,6 +5,9 @@ using UnityEngine;
 public abstract class FSMComponent : BaseComponent
 {
     #region Fields
+    public ActorSearchingTool ActorSearchingTool => searchingTool;
+    protected ActorSearchingTool searchingTool;
+
     [SerializeField] protected Dictionary<eFSMState, BaseState> fsmDictionary = new Dictionary<eFSMState, BaseState>();
     [SerializeField] protected eFSMState currentState = eFSMState.Idle;
     public eFSMState State
@@ -19,9 +22,7 @@ public abstract class FSMComponent : BaseComponent
             currentState = value;
             fsmDictionary[currentState].OnStateEnter();
         }
-    }
-    public ActorSearchingTool ActorSearchingTool => searchingTool;
-    protected ActorSearchingTool searchingTool;
+    }   
     #endregion
 
     #region Component Method
@@ -36,6 +37,4 @@ public abstract class FSMComponent : BaseComponent
         fsmDictionary[currentState].OnStateStay(fixedDeltaTime);
     }
     #endregion
-
-
 }

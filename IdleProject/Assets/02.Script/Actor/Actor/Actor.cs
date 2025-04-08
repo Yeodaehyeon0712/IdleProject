@@ -37,7 +37,7 @@ public abstract class Actor : PoolingObject<eActorType>
     }
     protected virtual void FixedUpdate()
     {
-        //controllerComponent.FixedComponentUpdate(TimeManager.FixedDeltaTime);
+        fsmComponent.FixedComponentUpdate(TimeManager.FixedDeltaTime);
     }
     #endregion
 
