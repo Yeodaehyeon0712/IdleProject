@@ -35,6 +35,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     - Animator
+  - m_GUID: 7df9d938e76864942a3a275102e11bc0
+    m_Address: Actor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    - Actor
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f09ea225085418e44bb3316295057c06, type: 2}
   m_SchemaSet:
