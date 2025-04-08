@@ -269,7 +269,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -336,6 +336,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1981,10 +2005,10 @@ TextureImporter:
       Golem_Full_38: -4090250175122369612
       Golem_Full_70: -7630514465778954011
       Golem_Full_35: -7422888589472058108
-      Golem_Full_72: -2504471473932805799
+      Golem_Full_2: 4463346520189974070
       Golem_Full_52: -2940916062444521281
       Golem_Full_69: -194085950180906761
-      Golem_Full_2: 4463346520189974070
+      Golem_Full_72: -2504471473932805799
       Golem_Full_10: 8720520468919917045
       Golem_Full_16: 606979793319043027
       Golem_Full_53: -6785134439540604625
