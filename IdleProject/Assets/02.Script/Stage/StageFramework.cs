@@ -48,7 +48,7 @@ public abstract class StageFramework
 
         //UI
         UIManager.Instance.Stage.CurrentStage = Data.Type;
-        UIManager.Instance.Stage.GetRaceUI.SetTitleText(DataManager.StageTable[stageIndex].Name);
+        UIManager.Instance.Stage.SetTitleText(DataManager.StageTable[stageIndex].Name);
         //Background
         BackgroundManager.Instance.SetupBackground(CameraManager.Instance.GetCamera(eCameraType.MainCamera).transform, Data.BackgroundKey);
         //Actor
@@ -89,21 +89,21 @@ public abstract class StageFramework
 
     #region Stage Stop Method
     //프로세스를 멈추고 결과창을 보여준다 .
-    public void StopFramework(bool isDie=true)
+    public void StopFramework(bool skipResult)
     {
         if (frameworkState == eStageFrameworkState.InProgress)
             frameworkCTS.Cancel();
 
-        StopFrameworkAsync(isDie).Forget();
+        StopFrameworkAsync(skipResult).Forget();
     }
     //
-    async UniTask StopFrameworkAsync(bool isDie)
+    async UniTask StopFrameworkAsync(bool skipResult)
     {
         await UniTask.WaitUntil(() => frameworkState != eStageFrameworkState.InProgress);
         OnStopFramework();
 
-        if (isDie)
-        UIManager.Instance.ResultPopUpUI.Enable();
+        if (skipResult==false)
+            UIManager.Instance.ResultPopUpUI.Enable();
         else
         {
             //루프에서 보스도전 눌렀을 경우

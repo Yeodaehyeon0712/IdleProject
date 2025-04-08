@@ -38,6 +38,21 @@ public class StageUI : BaseUI
 
     }
     #endregion
+    public void SetTitleText(string st)
+    {
+        switch (currentStage)
+        {
+            case eStageType.Race:
+                GetRaceUI.SetTitleText(st);
+                break;
+            case eStageType.Boss:
+                GetBossUI.SetTitleText(st);
+                break;
+            case eStageType.Loop:
+                GetLoopUI.SetTitleText(st);
+                break;
+        }
+    }
 
     public RaceStageUI GetRaceUI => stageUIDic[eStageType.Race] as RaceStageUI;
     public LoopStageUI GetLoopUI => stageUIDic[eStageType.Loop] as LoopStageUI;
