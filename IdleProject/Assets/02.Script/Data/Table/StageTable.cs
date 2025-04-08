@@ -9,10 +9,10 @@ namespace Data
         public readonly eStageType Type;
         public readonly int SuccessIndex;
         public readonly int FailedIndex;
-        public readonly int[] MonsterIndexArr;
-        //HP
-        //Attack
-        //Gold
+        public readonly int[] EnemyIndexArr;
+        readonly FloatFormulaCalculator enemyHPFormula;
+        readonly FloatFormulaCalculator enemyAttackDamageFormula;
+        readonly IntFormulaCalculator enemyGoldFormula;
         public readonly string BackgroundKey; 
 
         public StageData(int index, Dictionary<string, string> dataPair)
@@ -21,12 +21,15 @@ namespace Data
             Type = GameConst.StageType[dataPair["StageType"]];
             SuccessIndex = int.Parse(dataPair["SuccessIndex"]);
             FailedIndex = int.Parse(dataPair["FailedIndex"]);
-            MonsterIndexArr = System.Array.ConvertAll(dataPair["MonsterIndex"].Split('|'), v => int.Parse(v));
-            //HP
-            //Attack
-            //Gold
+            EnemyIndexArr = System.Array.ConvertAll(dataPair["EnemyIndex"].Split('|'), v => int.Parse(v));
+            enemyHPFormula = new FloatFormulaCalculator(dataPair["EnemyMaxHP"]);
+            enemyAttackDamageFormula = new FloatFormulaCalculator(dataPair["EnemyAttackDamage"]);
+            enemyGoldFormula = new IntFormulaCalculator(dataPair["EnemyGoldAmount"]);
             BackgroundKey = dataPair["BackgroundKey"];
         }
+        public float GetEnemyMaxHP() => enemyHPFormula.GetValue(Index);
+        public float GetEnemyAttackDamage() => enemyAttackDamageFormula.GetValue(Index);
+        public int GetGold() => enemyGoldFormula.GetValue(Index);
     }
 
 }
