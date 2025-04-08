@@ -46,7 +46,10 @@ public class StageManager : TSingletonMono<StageManager>
     {
         try
         {
+            //CameraManager.Instance.FadeOn(true, eCameraFadeType.Blur, 1.5f, null);
             await stageFrameworkDic[currContents].SetupFrameworkAsync(stageIndex);
+            await UniTask.WaitForSeconds(1.5f);
+            CameraManager.Instance.FadeOff(true, eCameraFadeType.Blur, 1.5f, null);
 
             while (LockStage)
                 await UniTask.Yield(cancellationToken:token.Token);
@@ -71,6 +74,7 @@ public class StageManager : TSingletonMono<StageManager>
     }
     public void ClearStage()
     {
+        CameraManager.Instance.FadeOn(true, eCameraFadeType.Blur, 1.5f, null);
         stageFrameworkDic[currContents].CleanFramework();
     }
     #endregion
