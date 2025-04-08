@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class BattleState : BaseState
 {
+    #region Fields
+    float defaultAttackElapsedTime;
+    #endregion
+
     #region State Method
     public BattleState(Actor owner) : base(owner) { }
     public override void OnStateEnter()
     {
-
+        defaultAttackElapsedTime = 1f;
     }
     public override void OnStateStay(float deltaTime)
     {
@@ -21,8 +25,14 @@ public class BattleState : BaseState
                 fsm.Target = null; return;
             }
 
+            defaultAttackElapsedTime += deltaTime;
 
-
+            if (defaultAttackElapsedTime > 1f)
+            {
+                defaultAttackElapsedTime = 0;
+                owner.DefaultAttack();               
+                return;
+            }
         }
         else
         {
@@ -51,7 +61,7 @@ public class BattleState : BaseState
 
     }
     void SkillAttack() 
-    { 
-
+    {
+       // owner.DefaultAttackElapsedTime = 0f;
     }
 }

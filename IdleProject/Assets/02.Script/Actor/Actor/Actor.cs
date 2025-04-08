@@ -25,6 +25,11 @@ public abstract class Actor : PoolingObject<eActorType>
         InitializeComponent();
         fsmComponent.GenerateFSMState();
     }
+    public override void Spawn(uint worldID, Vector2 position)
+    {
+        base.Spawn(worldID, position);
+        currentHP = Status.GetStatus(eStatusType.MaxHP);
+    }
     protected override void ReturnToPool()
     {
         ActorManager.Instance.RegisterActorPool(worldID, type, objectID);
@@ -61,6 +66,7 @@ public abstract class Actor : PoolingObject<eActorType>
     }
     public virtual void Death(float time = 2.5f)
     {
+        Skin.SetAnimationTrigger(eCharacterAnimState.Death);
         FSM.State = eFSMState.Death;
         Clean(time);
     }
@@ -81,6 +87,21 @@ public abstract class Actor : PoolingObject<eActorType>
     {
         foreach (var component in componentDictionary.Values)
             component.ComponentUpdate(deltaTime);
+    }
+    #endregion
+
+    #region Attack Method
+    public void DefaultAttack()
+    {
+        if (FSM.State == eFSMState.Death) return;
+
+        Skin.SetAnimationTrigger(eCharacterAnimState.Attack);
+
+        double criticalCoefficient = Player.ComputeCritical(out bool isCritical);
+        double damage = Status.GetStatus(eStatusType.AttackDamage) * criticalCoefficient;
+
+        AttackHandler attackHandler = new AttackHandler(worldID, FSM.Target.WorldID, damage,isCritical);
+        ActorManager.Instance.PushAttackHandler = attackHandler;
     }
     #endregion
 }
