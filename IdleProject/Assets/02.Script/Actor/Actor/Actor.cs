@@ -2,10 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Actor : MonoBehaviour
+public abstract class Actor : PoolingObject<eActorType>
 {
-    public void AddComponent(BaseComponent com)
+    #region Variables
+    protected Dictionary<eComponent, BaseComponent> componentDictionary = new Dictionary<eComponent, BaseComponent>();
+    public SkinComponent Skin => skinComponent;
+    [SerializeField] protected SkinComponent skinComponent;
+    public StatusComponent Status => statusComponent;
+    [SerializeField] protected StatusComponent statusComponent;
+
+    //Stat Fields
+    [SerializeField] public float CurrentHP { get => currentHP; set => currentHP = value; }
+    [SerializeField] protected float currentHP;
+    #endregion
+
+    #region Pooling Object Method
+    public override void Initialize(eActorType type, int objectID)
+    {
+        base.Initialize(type, objectID);
+        InitializeComponent();
+    }
+    protected override void ReturnToPool()
     {
 
     }
+    #endregion
+
+    #region Unity API
+    protected virtual void Update()
+    {
+        UpdateComponent(TimeManager.DeltaTime);
+    }
+    protected virtual void FixedUpdate()
+    {
+        //controllerComponent.FixedComponentUpdate(TimeManager.FixedDeltaTime);
+    }
+    #endregion
+
+    #region Actor Method
+
+    #endregion
+
+    #region Component Method
+    protected abstract void InitializeComponent();
+    public void AddComponent(BaseComponent component)
+    {
+        if (componentDictionary.ContainsKey(component.ComponentType))
+        {
+            componentDictionary[component.ComponentType].DestroyComponent();
+            componentDictionary.Remove(component.ComponentType);
+        }
+        componentDictionary.Add(component.ComponentType, component);
+    }
+    void UpdateComponent(float deltaTime)
+    {
+        foreach (var component in componentDictionary.Values)
+            component.ComponentUpdate(deltaTime);
+    }
+    public void ActiveComponent()
+    {
+        foreach (var component in componentDictionary.Values)
+            component.ActiveComponent();
+    }
+    public void InactiveComponent()
+    {
+        foreach (var component in componentDictionary.Values)
+            component.InactiveComponent();
+    }
+
+    #endregion
 }

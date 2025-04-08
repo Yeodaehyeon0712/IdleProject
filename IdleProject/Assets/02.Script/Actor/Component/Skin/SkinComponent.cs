@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SkinComponent : BaseComponent
+{
+    #region Variables
+    Animator animator;
+    Dictionary<eCharacterAnimState, int> animatorHashDic = new Dictionary<eCharacterAnimState, int>();
+    eCharacterAnimState currentAnim;
+    #endregion
+
+    #region Component Method
+    public SkinComponent(Actor owner, RuntimeAnimatorController controller) : base(owner, eComponent.SkinComponent, useUpdate: false)
+    {
+        var skin = owner.transform.Find("Skin");
+        animator = skin.GetComponent<Animator>();
+        animator.runtimeAnimatorController = controller;       
+
+        var speedHash = Animator.StringToHash("Speed");
+        animatorHashDic.Add(eCharacterAnimState.Move, speedHash);
+        animatorHashDic.Add(eCharacterAnimState.Idle, speedHash);
+        animatorHashDic.Add(eCharacterAnimState.Hit, Animator.StringToHash("Hit"));
+        animatorHashDic.Add(eCharacterAnimState.Death, Animator.StringToHash("Death"));
+    }
+    #endregion
+
+    #region SkinMethod
+    public void SetAnimationTrigger(eCharacterAnimState state)
+    {
+        currentAnim = state;
+        animator.SetTrigger(animatorHashDic[currentAnim]);
+    }
+    public void SetAnimationFloat(float value)
+    {
+        var nextState = (value == 0) ? eCharacterAnimState.Idle : eCharacterAnimState.Move;
+        if (nextState == currentAnim) return;
+
+        currentAnim = nextState;
+        animator.SetFloat(animatorHashDic[currentAnim], value);
+    }
+    #endregion
+}
