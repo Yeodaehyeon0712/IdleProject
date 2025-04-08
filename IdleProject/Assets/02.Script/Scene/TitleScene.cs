@@ -30,6 +30,8 @@ public class TitleScene : BaseScene
     async UniTask InitManager()
     {
         text_Description.text = "Waiting ... ";
+        SnapShotDataProperty.Instance.Initialize();
+        await UniTask.WaitUntil(() => SnapShotDataProperty.Instance.IsLoad);
 
         TimeManager.Instance.Initialize();
         await UniTask.WaitUntil(() => TimeManager.Instance.IsLoad);
