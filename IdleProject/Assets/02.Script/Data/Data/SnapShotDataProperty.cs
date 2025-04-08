@@ -7,10 +7,12 @@ public class SnapShotData
     //능력치 작업 중이었음 . 
     public Dictionary<eStatusType, int> statusLevelDic=new Dictionary<eStatusType, int>();
     public int CurrentStageIndex;
+    public int GoldAmount;
 }
 //Have to Change Save In Server 
 public class SnapShotDataProperty : JsonSerializableData<SnapShotData, SnapShotDataProperty>
 {
+    public SnapShotData GetData => data;
     protected override void SetDefaultValue()
     {
         data = new SnapShotData();
@@ -23,6 +25,11 @@ public class SnapShotDataProperty : JsonSerializableData<SnapShotData, SnapShotD
     public int GetStatusLevel(eStatusType type)
     {
         return data.statusLevelDic[type];
+    }
+    public void StatusLevelUp(eStatusType type, int goldCost)
+    {
+        data.GoldAmount -= goldCost;
+        data.statusLevelDic[type]+=1;
     }
     public int GetCurrentStage()
     {

@@ -14,8 +14,7 @@ public class StatusMainUI : BaseUI
         {
             var element=Instantiate(prefab, elementParent);
             element.Initialize();
-            element.SetStatusType(status);
-            element.Enable();
+            element.SetStatusType(this,status);       
             elementsList.Add(element);
         }
     }
@@ -23,6 +22,13 @@ public class StatusMainUI : BaseUI
     protected override void OnRefresh()
     {
         
+    }
+    public void RefreshElement()
+    {
+        foreach(var element in elementsList)
+        {
+            element.SetStatusElement();
+        }
     }
 
 }

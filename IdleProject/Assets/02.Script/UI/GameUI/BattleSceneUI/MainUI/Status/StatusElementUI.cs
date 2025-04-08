@@ -15,6 +15,7 @@ public class StatusElementUI : BaseUI
     TextMeshProUGUI text_GoldAmount;
     Button btn_Enforce;
 
+    StatusMainUI statusUI;
     Data.StatusData data;
     #endregion
 
@@ -27,13 +28,16 @@ public class StatusElementUI : BaseUI
         text_EnforceTitle = transform.Find("Button_Enforce/Text_Enforce").GetComponent<TextMeshProUGUI>();
         text_GoldAmount = transform.Find("Button_Enforce/Image_GoldAmount/Text_GoldAmount").GetComponent<TextMeshProUGUI>();
         btn_Enforce = transform.Find("Button_Enforce").GetComponent<Button>();
+        btn_Enforce.onClick.AddListener(OnClickEnforce);
     }
-    public void SetStatusType(eStatusType type)
+    public void SetStatusType(StatusMainUI statusUI,eStatusType type)
     {
+        this.statusUI = statusUI;
         this.type = type;
         data = DataManager.StatusTable[type];
         image_Icon.sprite = AddressableSystem.GetIcon(data.IconPath);
-        SetStatusData();
+        SetStatusElement();
+        Enable();
     }
     protected override void OnRefresh()
     {
@@ -41,11 +45,28 @@ public class StatusElementUI : BaseUI
     }
     #endregion
 
-    void SetStatusData()
+    public void SetStatusElement()
     {
-        var currentLevel = SnapShotDataProperty.Instance.GetStatusLevel(type);
-        text_Level.text = $"Lv. {currentLevel.ToString()}";
-        text_GoldAmount.text = data.GetGold(currentLevel).ToString();
-    }
+        var snapShot = SnapShotDataProperty.Instance;
+        int currentLevel = snapShot.GetStatusLevel(type);
+        int goldCost = data.GetGold(currentLevel);
+        bool enableEnforce = snapShot.GetData.GoldAmount >= goldCost;
 
+        text_Level.text = $"Lv. {currentLevel}";
+        text_GoldAmount.text = goldCost.ToString();
+        btn_Enforce.interactable= enableEnforce;
+    }
+    void OnClickEnforce()
+    {
+        var snapShot = SnapShotDataProperty.Instance;
+        var currentLevel = snapShot.GetStatusLevel(type);
+
+        int goldCost = data.GetGold(currentLevel);
+        bool enableEnforce = snapShot.GetData.GoldAmount >= goldCost;
+
+        if (enableEnforce == false) return;
+
+        snapShot.StatusLevelUp(type,data.GetGold(currentLevel));
+        statusUI.RefreshElement();
+    }
 }
