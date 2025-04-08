@@ -46,6 +46,7 @@ public class NormalStageFramework : StageFramework
             }
             await SubProcessAsync(token);
         }
+        Debug.Log("프로세스 끝");
     }
     async UniTask LoopPorccessAsync(CancellationToken token)
     {

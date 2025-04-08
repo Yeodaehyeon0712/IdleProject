@@ -67,6 +67,7 @@ public abstract class StageFramework
                 CurrentFrameworkState = eStageFrameworkState.InProgress;
                 StartFramework();
                 await ProcessFrameworkAsync(frameworkCTS.Token);
+                Debug.Log("프로세스 끝2");
             }
             catch(System.OperationCanceledException)
             {
@@ -74,9 +75,9 @@ public abstract class StageFramework
             }
             finally
             {
-                //결과창 보여주기
-                //if (frameworkCTS.IsCancellationRequested == false)
-                //    UIManager.Instance.ResultPopUpUI.Enable();
+                Debug.Log("프로세스 끝3");
+                if (frameworkCTS.IsCancellationRequested == false)
+                    UIManager.Instance.ResultPopUpUI.Enable();
             }
         }
     }
@@ -103,8 +104,8 @@ public abstract class StageFramework
         OnStopFramework();
 
         if (isDie)
-        // UIManager.Instance.ResultPopUpUI.Enable();
-        // else
+        UIManager.Instance.ResultPopUpUI.Enable();
+        else
         {
             //루프에서 보스도전 눌렀을 경우
             CurrentFrameworkState = eStageFrameworkState.Victory;

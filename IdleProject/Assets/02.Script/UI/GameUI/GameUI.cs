@@ -12,6 +12,9 @@ public class GameUI : MonoBehaviour
     public MenuButtonUI MenuButton;
     public PlayerInfoUI PlayerInfo;
     public StageUI Stage;
+
+    //PopUp UI
+    public ResultPopUpUI ResultPopUp;
     #endregion
 
     public void Initialize()
@@ -19,7 +22,7 @@ public class GameUI : MonoBehaviour
         Transform safeArea = transform.Find("SafeArea");
         InitializeSafeArea(safeArea);
 
-        //Lobby Scene
+        //Battle Scene
         var groupBattleSceneUI = safeArea.Find("Group_BattleSceneUI");
         PlayerInfo= groupBattleSceneUI.Find("Panel_Top/PlayerInfoUI").GetComponent<PlayerInfoUI>();
         uiDic.Add(eUI.PlayerInfo,PlayerInfo.Initialize());
@@ -29,6 +32,11 @@ public class GameUI : MonoBehaviour
         uiDic.Add(eUI.Main, Main.Initialize());
         MenuButton = groupBattleSceneUI.Find("Panel_Bottom/MenuButtonUI").GetComponent<MenuButtonUI>();
         uiDic.Add(eUI.MenuButton, MenuButton.Initialize());
+
+        //PopUp
+        var groupPopUpUI = safeArea.Find("Group_PopUpUI");
+        ResultPopUp = groupPopUpUI.Find("ResultPopUpUI").GetComponent<ResultPopUpUI>();
+        uiDic.Add(eUI.ResultPopUp, ResultPopUp.Initialize());
     }
     void InitializeSafeArea(Transform safeArea)
     {

@@ -12,8 +12,11 @@ public class UIManager : TSingletonMono<UIManager>
     //Battle Scene UI
     public MainUI MainUI => _gameUI.Main;
     public MenuButtonUI MenuButtonUI => _gameUI.MenuButton;
-    public PlayerInfoUI PlayerInfo=>_gameUI.PlayerInfo;
+    public PlayerInfoUI PlayerInfoUI=>_gameUI.PlayerInfo;
     public StageUI Stage=>_gameUI.Stage;
+
+    //Pop Up UI
+    public ResultPopUpUI ResultPopUpUI => _gameUI.ResultPopUp;
     #endregion
 
     protected override void OnInitialize()

@@ -236,6 +236,7 @@ public enum eUI
     Main=1<<1,
     PlayerInfo=1<<2,
     Stage=1<<3,
+    ResultPopUp=1<<4,
 }
 public enum eMovableUIDir
 {
