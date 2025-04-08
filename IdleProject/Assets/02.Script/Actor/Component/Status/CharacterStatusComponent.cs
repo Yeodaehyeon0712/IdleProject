@@ -34,7 +34,7 @@ public class CharacterStatusComponent : StatusComponent
         computedStatusDic[type] = statusData.CalculateType switch
         {
             eCalculateType.Flat => (defaultValue + enforceValue),
-            eCalculateType.Percentage => defaultValue * (1f + (enforceValue * 0.01f)),
+            eCalculateType.Percentage =>  (/*1f +*/ (defaultValue +enforceValue) * 0.01f),
             _ => defaultValue,
         };
     }
