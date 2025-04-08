@@ -10,7 +10,9 @@ public abstract class Actor : PoolingObject<eActorType>
     [SerializeField] protected SkinComponent skinComponent;
     public StatusComponent Status => statusComponent;
     [SerializeField] protected StatusComponent statusComponent;
-
+    public FSMComponent FSM => fsmComponent;
+    [SerializeField] protected FSMComponent fsmComponent;
+    public eFSMState FSMState => fsmComponent.State;
     //Stat Fields
     [SerializeField] public float CurrentHP { get => currentHP; set => currentHP = value; }
     [SerializeField] protected float currentHP;

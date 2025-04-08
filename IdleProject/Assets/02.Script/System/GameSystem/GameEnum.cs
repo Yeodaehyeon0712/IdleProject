@@ -1,5 +1,21 @@
 
 #region Actor
+[System.Flags]
+public enum eFSMState
+{
+    Idle = 1 << 0,
+    Move = 1 << 1,
+    Battle = 1 << 2,
+    Death = 1 << 3,
+}
+[System.Flags]
+public enum eActorFinderAttribute
+{
+    CharacterType = 1 << 0,
+    Distance = 1 << 1,
+    FSMState = 1 << 2,
+    CullingWorldID = 1 << 3,
+}
 public enum eActorType:uint
 {
     Character,
