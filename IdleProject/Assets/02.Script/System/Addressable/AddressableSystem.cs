@@ -19,7 +19,7 @@ public class AddressableSystem
     Dictionary<string, TextAsset> tableContainer = new Dictionary<string, TextAsset>();
     Dictionary<string, Sprite> backgroundContainer = new Dictionary<string,Sprite>();
     Dictionary<string, SOAnimatorContainer> animatorContainer = new Dictionary<string, SOAnimatorContainer>();
-
+    Dictionary<string, Sprite> iconContainer = new Dictionary<string, Sprite>();
     #endregion
 
     public void Initialize()
@@ -113,6 +113,7 @@ public class AddressableSystem
         await LoadAssetAsync(eAddressableState.TableMemory,tableContainer);
         await LoadAssetAsync(eAddressableState.BackgroundMemory, backgroundContainer);
         await LoadAssetAsync(eAddressableState.AnimatorMemory, animatorContainer);
+        await LoadAssetAsync(eAddressableState.IconMemory, iconContainer);
 
         state = eAddressableState.Complete;
     }
@@ -189,6 +190,16 @@ public class AddressableSystem
         }
 
         Debug.LogError($"Animator with resource path {key} not found in the animator container.");
+        return null;
+    }
+    public static Sprite GetIcon(string key)
+    {
+        if (DataManager.AddressableSystem.iconContainer.TryGetValue(key, out var icon))
+        {
+            return icon;
+        }
+
+        Debug.LogError($"Icon with resource path {key} not found in the icon container.");
         return null;
     }
     #endregion
