@@ -45,9 +45,7 @@ public abstract class StageFramework
     {
         CurrentFrameworkState = eStageFrameworkState.SetUp;
         this.stageIndex = stageIndex;
-        ////Camera
-        //CameraManager.Instance.FadeOn(true,eCameraFadeType.BattleWipe, 1f, null);
-        //await UniTask.WaitForSeconds(1f);
+
         //UI
         UIManager.Instance.Stage.CurrentStage = Data.Type;
         //Background
@@ -55,7 +53,6 @@ public abstract class StageFramework
         //Actor
         var actor = await ActorManager.Instance.SpawnCharacter(1, Vector3.zero);
         Player.RegisterPlayer(actor);
-
         //Camera
         CameraManager.Instance.GetCamera<MainCamera>(eCameraType.MainCamera).SetActor=actor;
     }
@@ -85,7 +82,6 @@ public abstract class StageFramework
     }
     void StartFramework()
     {
-        CameraManager.Instance.FadeOff(true, eCameraFadeType.BattleWipe, 1f, null);
         Player.ActivePlayer();
     }
     protected abstract UniTask ProcessFrameworkAsync(CancellationToken token);
