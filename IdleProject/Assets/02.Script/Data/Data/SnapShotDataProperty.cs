@@ -16,7 +16,7 @@ public class SnapShotDataProperty : JsonSerializableData<SnapShotData, SnapShotD
         data = new SnapShotData();
         foreach(eStatusType a in System.Enum.GetValues(typeof(eStatusType)))
         {
-            data.statusLevelDic[a] = 0;
+            data.statusLevelDic[a] = 1;
         }
         data.CurrentStageIndex = 1;
     }

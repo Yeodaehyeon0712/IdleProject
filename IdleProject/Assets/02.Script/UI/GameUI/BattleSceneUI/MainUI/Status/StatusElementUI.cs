@@ -44,7 +44,7 @@ public class StatusElementUI : BaseUI
     void SetStatusData()
     {
         var currentLevel = SnapShotDataProperty.Instance.GetStatusLevel(type);
-        text_Level.text = currentLevel.ToString();
+        text_Level.text = $"Lv. {currentLevel.ToString()}";
         text_GoldAmount.text = data.GetGold(currentLevel).ToString();
     }
 

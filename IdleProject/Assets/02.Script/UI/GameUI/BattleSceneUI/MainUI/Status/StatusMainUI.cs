@@ -15,6 +15,7 @@ public class StatusMainUI : BaseUI
             var element=Instantiate(prefab, elementParent);
             element.Initialize();
             element.SetStatusType(status);
+            element.Enable();
             elementsList.Add(element);
         }
     }
