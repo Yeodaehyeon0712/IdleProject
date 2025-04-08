@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class SkinComponent : BaseComponent
 {
     #region Variables
     Animator animator;
     Dictionary<eCharacterAnimState, int> animatorHashDic = new Dictionary<eCharacterAnimState, int>();
-    eCharacterAnimState currentAnim;
+    [SerializeField]eCharacterAnimState currentAnim;
     #endregion
 
     #region Component Method

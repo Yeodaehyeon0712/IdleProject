@@ -40,7 +40,24 @@ public abstract class Actor : PoolingObject<eActorType>
     #endregion
 
     #region Actor Method
+    public virtual void Death(float time = 2.5f)
+    {
+        Clean(time);
+    }
+    public virtual void Hit(in AttackHandler attackHandler)
+    {
+        double damage = attackHandler.Damage;
+        currentHP -= (float)damage;
 
+        if (currentHP <= 0f)
+            Death();
+        else
+            Skin.SetAnimationTrigger(eCharacterAnimState.Hit);
+    }
+    public void Recovery(in AttackHandler attackHandler)
+    {
+        currentHP = System.Math.Clamp(currentHP - (float)attackHandler.Damage, 0, statusComponent.GetStatus(eStatusType.MaxHP));
+    }
     #endregion
 
     #region Component Method
