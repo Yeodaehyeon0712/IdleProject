@@ -18,12 +18,18 @@ public abstract class Actor : PoolingObject<eActorType>
     protected virtual void OnHpChange() { }
 
     [SerializeField] protected float currentHP;
+
+    //Attachment Fields
+    public Attachment Attachment => attachment;
+    protected Attachment attachment;
     #endregion
 
     #region Pooling Object Method
     public override void Initialize(eActorType type, int objectID)
     {
         base.Initialize(type, objectID);
+        attachment = GetComponentInChildren<Attachment>();
+        attachment.Initialize();
         InitializeComponent();
         fsmComponent.GenerateFSMState();
     }
@@ -58,6 +64,7 @@ public abstract class Actor : PoolingObject<eActorType>
         double damage = attackHandler.Damage;
         CurrentHP -= (float)damage;
 
+        UIManager.Instance.FieldUI.SetDamageText(attachment.GetAttachmentElement(eAttachmentTarget.OverHead).Transform.position, attackHandler.Damage, attackHandler.IsCritical,type);
         if (CurrentHP <= 0f)
             Death();
         else

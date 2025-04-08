@@ -71,7 +71,8 @@ public enum eModifierType
 }
 public enum eAttachmentTarget
 {
-    OverHead,    
+    OverHead, 
+    Body,
     End,
 }
 #endregion
