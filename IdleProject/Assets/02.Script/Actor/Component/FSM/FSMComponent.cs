@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class FSMComponent : BaseComponent
 {
     #region Fields
+    public Actor Target;
     public ActorSearchingTool ActorSearchingTool => searchingTool;
     protected ActorSearchingTool searchingTool;
 

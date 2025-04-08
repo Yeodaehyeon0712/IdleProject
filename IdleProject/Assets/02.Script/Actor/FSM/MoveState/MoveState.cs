@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class MoveState :BaseState
 {
+    #region Fields
+    //추후 수정
+    float _currentRange=5f;
+    #endregion
+
     #region State Method
-    public MoveState(Actor owner) : base(owner) { }
+    public MoveState(Actor owner) : base(owner) 
+    {
+        var tool = fsm.ActorSearchingTool;
+        tool.AddConditionCharacterType(eActorType.Enemy).AddConditionFSMState(~eFSMState.Death)
+            .AddConditionDistance(owner, _currentRange * _currentRange);
+    }
     public override void OnStateEnter()
     {
 
     }
     public override void OnStateStay(float deltaTime)
     {
+        //OnCheckRange();
+        var target = fsm.Target;
 
+        if (target != null)
+        {
+            if (target.FSMState == eFSMState.Death)
+            {
+                fsm.Target = null; return;
+            }
+
+            if (Mathf.Abs(owner.transform.position.x - fsm.Target.transform.position.x) > _currentRange)
+                OnMove(deltaTime);
+            else
+                fsm.State = eFSMState.Battle;
+        }
+        else
+        {
+            if (SearchTarget() == false)
+                OnMove(deltaTime);
+        }
     }
     public override void OnStateExit()
     {
@@ -21,21 +50,30 @@ public class MoveState :BaseState
     #endregion
 
     #region Move Method
-    void OnCheckRange()
+    void OnMove(float deltaTime)
     {
-        //if (_currentRange != Player.GetAttackRange())
-        //{
-        //    _currentRange = Player.GetAttackRange();
+        var moveSpeed = owner.Status.GetStatus(eStatusType.MoveSpeed);
+        owner.transform.Translate(moveSpeed * Vector3.right * deltaTime , Space.Self);
+    }
+    //void OnCheckRange()
+    //{
+    //    if (_currentRange == Player.GetAttackRange()) return;
 
-        //    _controller.ActorSearchingTool.AddConditionDistance(_owner, _currentRange * _currentRange);
-        //}
+    //    _currentRange = Player.GetAttackRange();
+    //    fsm.ActorSearchingTool.AddConditionDistance(owner, _currentRange * _currentRange);
+    //}
+    #endregion
 
-        //if (_currentSpecialRange != Player.GetSpeciaAttackRange())
-        //{
-        //    _currentSpecialRange = Player.GetSpeciaAttackRange();
-
-        //    _controller.ActorSpecialSearchingTool.AddConditionDistance(_owner, _currentSpecialRange * _currentSpecialRange);
-        //}
+    #region Search Method
+    bool SearchTarget()
+    {
+        Actor actor = ActorManager.Instance.FindActor(fsm.ActorSearchingTool);
+        if (actor != null)
+        {
+            fsm.Target = actor;
+            return true;
+        }
+        return false;
     }
     #endregion
 }
