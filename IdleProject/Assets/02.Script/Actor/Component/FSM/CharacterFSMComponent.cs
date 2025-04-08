@@ -9,7 +9,7 @@ public class CharacterFSMComponent : FSMComponent
     {
         fsmDictionary.Add(eFSMState.Idle, new IdleState(owner));
         fsmDictionary.Add(eFSMState.Move, new MoveState(owner));
-        fsmDictionary.Add(eFSMState.Battle, new IdleState(owner));
-        fsmDictionary.Add(eFSMState.Death, new IdleState(owner));
+        fsmDictionary.Add(eFSMState.Battle, new BattleState(owner));
+        fsmDictionary.Add(eFSMState.Death, new DeathState(owner));
     }
 }
