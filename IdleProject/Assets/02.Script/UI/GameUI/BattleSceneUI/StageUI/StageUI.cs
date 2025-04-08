@@ -38,4 +38,9 @@ public class StageUI : BaseUI
 
     }
     #endregion
+
+    public RaceStageUI GetRaceUI => stageUIDic[eStageType.Race] as RaceStageUI;
+    public LoopStageUI GetLoopUI => stageUIDic[eStageType.Loop] as LoopStageUI;
+    public BossStageUI GetBossUI => stageUIDic[eStageType.Boss] as BossStageUI;
+
 }

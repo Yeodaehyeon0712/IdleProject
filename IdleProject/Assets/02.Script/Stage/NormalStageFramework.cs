@@ -35,9 +35,11 @@ public class NormalStageFramework : StageFramework
     {
         Debug.Log("프로세스 시작");
         currentStageProgress = 0;
+        UIManager.Instance.Stage.GetRaceUI.SetProgress(0);
         while (frameworkState==eStageFrameworkState.InProgress)
         {
             ++currentStageProgress;
+
             if (currentStageProgress > GameConst.RaceStageCount)
             {
                 Debug.Log("승리");
@@ -45,8 +47,10 @@ public class NormalStageFramework : StageFramework
                 break;
             }
             await SubProcessAsync(token);
+            var value = (float)currentStageProgress / GameConst.RaceStageCount;
+            UIManager.Instance.Stage.GetRaceUI.SetProgress(value);
         }
-        Debug.Log("프로세스 끝");
+        UIManager.Instance.Stage.GetRaceUI.SetProgress(1f);
     }
     async UniTask LoopPorccessAsync(CancellationToken token)
     {

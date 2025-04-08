@@ -6,6 +6,7 @@ namespace Data
     public class StageData
     {  
         public readonly int Index;
+        public readonly string Name;
         public readonly eStageType Type;
         public readonly int SuccessIndex;
         public readonly int FailedIndex;
@@ -19,6 +20,7 @@ namespace Data
         public StageData(int index, Dictionary<string, string> dataPair)
         {
             Index = index;
+            Name = dataPair["Name"];
             Type = GameConst.StageType[dataPair["StageType"]];
             SuccessIndex = int.Parse(dataPair["SuccessIndex"]);
             FailedIndex = int.Parse(dataPair["FailedIndex"]);

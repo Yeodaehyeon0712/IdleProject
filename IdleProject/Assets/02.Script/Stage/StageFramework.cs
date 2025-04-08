@@ -48,6 +48,7 @@ public abstract class StageFramework
 
         //UI
         UIManager.Instance.Stage.CurrentStage = Data.Type;
+        UIManager.Instance.Stage.GetRaceUI.SetTitleText(DataManager.StageTable[stageIndex].Name);
         //Background
         BackgroundManager.Instance.SetupBackground(CameraManager.Instance.GetCamera(eCameraType.MainCamera).transform, Data.BackgroundKey);
         //Actor
