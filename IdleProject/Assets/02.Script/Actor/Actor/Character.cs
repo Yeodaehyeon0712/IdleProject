@@ -12,6 +12,7 @@ public class Character : Actor
         characterData = DataManager.CharacterTable[objectID];
         skinComponent = new SkinComponent(this, AddressableSystem.GetAnimator(characterData.AnimatorPath));
         statusComponent = new CharacterStatusComponent(this);
+        fsmComponent = new CharacterFSMComponent(this);
     }
     public override void Death(float time = 2.5F)
     {

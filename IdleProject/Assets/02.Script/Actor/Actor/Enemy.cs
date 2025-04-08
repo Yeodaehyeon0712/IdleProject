@@ -13,5 +13,6 @@ public class Enemy : Actor
         enemyData = DataManager.EnemyTable[objectID];
         skinComponent = new SkinComponent(this, AddressableSystem.GetAnimator(enemyData.AnimatorPath));
         statusComponent = new EnemyStatusComponent(this);
+        fsmComponent = new EnemyFSMComponent(this);
     }
 }
