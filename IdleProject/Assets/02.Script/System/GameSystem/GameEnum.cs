@@ -16,8 +16,8 @@ public enum eActorState
 public enum eComponent
 {
     SkinComponent,
-    ControllerComponent,
-    StatComponent,
+    StatusComponent,
+    FSMComponent,
     SkillComponent,
 }
 public enum eCharacterAnimState
