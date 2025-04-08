@@ -37,24 +37,31 @@ public class StatusElementUI : BaseUI
         data = DataManager.StatusTable[type];
         image_Icon.sprite = AddressableSystem.GetIcon(data.IconPath);
         SetStatusElement();
+        SetButtonState();
         Enable();
     }
     protected override void OnRefresh()
     {
-        text_EnforceTitle.text=LocalizingManager.Instance.GetLocalizing(1);
+        text_EnforceTitle.text=LocalizingManager.Instance.GetLocalizing(501);
     }
     #endregion
 
     public void SetStatusElement()
     {
+        int currentLevel = SnapShotDataProperty.Instance.GetStatusLevel(type);
+        int goldCost = data.GetGold(currentLevel);
+        
+        text_Level.text = $"Lv. {currentLevel}";
+        text_GoldAmount.text = goldCost.ToString();
+        text_Description.text = $"{LocalizingManager.Instance.GetLocalizing(data.NameKey)}\n{data.GetValue(currentLevel)}";       
+    }
+    public void SetButtonState()
+    {
         var snapShot = SnapShotDataProperty.Instance;
         int currentLevel = snapShot.GetStatusLevel(type);
         int goldCost = data.GetGold(currentLevel);
         bool enableEnforce = snapShot.GetData.GoldAmount >= goldCost;
-
-        text_Level.text = $"Lv. {currentLevel}";
-        text_GoldAmount.text = goldCost.ToString();
-        btn_Enforce.interactable= enableEnforce;
+        btn_Enforce.interactable = enableEnforce;
     }
     void OnClickEnforce()
     {
@@ -67,6 +74,7 @@ public class StatusElementUI : BaseUI
         if (enableEnforce == false) return;
 
         snapShot.StatusLevelUp(type,data.GetGold(currentLevel));
+        SetStatusElement();
         statusUI.RefreshElement();
     }
 }

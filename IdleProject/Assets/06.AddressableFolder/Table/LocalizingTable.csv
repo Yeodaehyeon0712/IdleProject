@@ -1,2 +1,15 @@
 Key,EN,KR
 0,Not Set Language,설정 없는 로컬
+1,AttackDamage,공격력
+2,MaxHP,체력
+3,MoveSpeed,이동속도
+4,CriticalChance,치명타 확률
+5,CriticalDamage,치명타 데미지
+11,AttackDamage,공격력 설명
+12,MaxHP,체력 설명
+13,MoveSpeed,이동속도 설명
+14,CriticalChance,치명타 확률 설명
+15,CriticalDamage,치명타 데미지 설명
+101,Character1,캐릭터 1
+201,Enemy1,적1
+501,Enforce,강화

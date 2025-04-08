@@ -27,7 +27,7 @@ public class StatusMainUI : BaseUI
     {
         foreach(var element in elementsList)
         {
-            element.SetStatusElement();
+            element.SetButtonState();
         }
     }
 
