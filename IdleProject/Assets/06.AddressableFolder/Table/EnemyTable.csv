@@ -1,0 +1,9 @@
+ Index,Name,NameKey,ResourcePath,AnimatorPath,IconPath
+1,Bat,201,Actor/Enemy.prefab,Animator/Enemy/Bat.asset,Icon/Enemy/Bat.png
+2,Crab,202,Actor/Enemy.prefab,Animator/Enemy/Crab.asset,Icon/Enemy/Crab.png
+3,Golem,203,Actor/Enemy.prefab,Animator/Enemy/Golem.asset,Icon/Enemy/Golem.png
+4,Pebble,204,Actor/Enemy.prefab,Animator/Enemy/Pebble.asset,Icon/Enemy/Pebble.png
+5,Rat,205,Actor/Enemy.prefab,Animator/Enemy/Rat.asset,Icon/Enemy/Rat.png
+6,ReinforceGolem,206,Actor/Enemy.prefab,Animator/Enemy/ReinforceGolem.asset,Icon/Enemy/ReinforceGolem.png
+7,Skull,207,Actor/Enemy.prefab,Animator/Enemy/Skull.asset,Icon/Enemy/Skull.png
+8,SpikedSlime,208,Actor/Enemy.prefab,Animator/Enemy/SpikedSlime.asset,Icon/Enemy/SpikedSlime.png
