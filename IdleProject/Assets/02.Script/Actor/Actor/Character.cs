@@ -19,5 +19,17 @@ public class Character : Actor
         base.Death(time);
         Timer.SetTimer(time, true, () => StageManager.Instance.StopStage(skipResult: false));
     }
+    public override void DefaultAttack()
+    {
+        if (FSM.State == eFSMState.Death) return;
+
+        Skin.SetAnimationTrigger(eCharacterAnimState.Attack);
+
+        double criticalCoefficient = Player.ComputeCritical(out bool isCritical);
+        double damage = Status.GetStatus(eStatusType.AttackDamage) * criticalCoefficient;
+
+        AttackHandler attackHandler = new AttackHandler(worldID, FSM.Target.WorldID, damage, isCritical);
+        ActorManager.Instance.PushAttackHandler = attackHandler;
+    }
 
 }

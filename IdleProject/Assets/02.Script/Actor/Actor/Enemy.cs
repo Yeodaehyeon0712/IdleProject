@@ -26,4 +26,19 @@ public class Enemy : Actor
         var gold = DataManager.StageTable[snapShot.GetCurrentStage()].GetGold();
         snapShot.GetData.GoldAmount += gold;
     }
+    public override void DefaultAttack()
+    {
+        if (FSM.State == eFSMState.Death) return;
+
+        //Skin.SetAnimationTrigger(eCharacterAnimState.Attack);
+
+        double damage = Status.GetStatus(eStatusType.AttackDamage) ;
+
+        AttackHandler attackHandler = new AttackHandler(worldID, FSM.Target.WorldID, damage, false);
+        ActorManager.Instance.PushAttackHandler = attackHandler;
+    }
+    protected override void HitAnimation() 
+    {
+        Skin.SetAnimationTrigger(eCharacterAnimState.Hit);
+    }
 }

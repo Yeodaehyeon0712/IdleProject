@@ -56,12 +56,4 @@ public class BattleState : BaseState
         }
         return false;
     }
-    void DefaultAttack()
-    {
-
-    }
-    void SkillAttack() 
-    {
-       // owner.DefaultAttackElapsedTime = 0f;
-    }
 }

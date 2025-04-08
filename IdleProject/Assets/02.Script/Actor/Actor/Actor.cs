@@ -59,8 +59,9 @@ public abstract class Actor : PoolingObject<eActorType>
         if (currentHP <= 0f)
             Death();
         else
-            Skin.SetAnimationTrigger(eCharacterAnimState.Hit);
+            HitAnimation();   
     }
+    protected virtual void HitAnimation() { }
     public void Recovery(in AttackHandler attackHandler)
     {
         currentHP = System.Math.Clamp(currentHP - (float)attackHandler.Damage, 0, statusComponent.GetStatus(eStatusType.MaxHP));
@@ -92,17 +93,6 @@ public abstract class Actor : PoolingObject<eActorType>
     #endregion
 
     #region Attack Method
-    public void DefaultAttack()
-    {
-        if (FSM.State == eFSMState.Death) return;
-
-        Skin.SetAnimationTrigger(eCharacterAnimState.Attack);
-
-        double criticalCoefficient = Player.ComputeCritical(out bool isCritical);
-        double damage = Status.GetStatus(eStatusType.AttackDamage) * criticalCoefficient;
-
-        AttackHandler attackHandler = new AttackHandler(worldID, FSM.Target.WorldID, damage,isCritical);
-        ActorManager.Instance.PushAttackHandler = attackHandler;
-    }
+    public abstract void DefaultAttack();    
     #endregion
 }
