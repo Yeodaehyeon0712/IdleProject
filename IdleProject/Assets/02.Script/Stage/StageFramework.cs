@@ -67,7 +67,6 @@ public abstract class StageFramework
                 CurrentFrameworkState = eStageFrameworkState.InProgress;
                 StartFramework();
                 await ProcessFrameworkAsync(frameworkCTS.Token);
-                Debug.Log("프로세스 끝2");
             }
             catch(System.OperationCanceledException)
             {
@@ -75,7 +74,6 @@ public abstract class StageFramework
             }
             finally
             {
-                Debug.Log("프로세스 끝3");
                 if (frameworkCTS.IsCancellationRequested == false)
                     UIManager.Instance.ResultPopUpUI.Enable();
             }
@@ -128,6 +126,8 @@ public abstract class StageFramework
     public void CleanFramework()
     {
         BackgroundManager.Instance.CleanBackground();
+        ActorManager.Instance.CleanAll();
+        CameraManager.Instance.GetCamera<MainCamera>(eCameraType.MainCamera).Clear();
         //UIManager.Instance.GameUI.CloseUIByFlag(eUI.Controller | eUI.BattleState);
         ExitStage(1f).Forget();
     }

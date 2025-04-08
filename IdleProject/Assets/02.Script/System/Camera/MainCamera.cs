@@ -32,6 +32,13 @@ public class MainCamera : BaseCamera
             _targetPosition = transform.position;
         }
     }
+    public void Clear()
+    {
+        _followTarget = null;
+        IsFollowTargetPosition = fadeEffectProcess;
+        _targetPosition = Vector3.zero;
+        transform.position = Vector3.zero;
+    }
     
     private void FixedUpdate()
     {

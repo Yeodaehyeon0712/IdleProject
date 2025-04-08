@@ -40,6 +40,10 @@ public class ActorManager : TSingletonMono<ActorManager>
     }
     public void RegisterActorPool(uint worldID, eActorType type, int pathHash) => actorFactory.RegisterToObjectPool(worldID, type, pathHash);
     public Dictionary<uint, Actor> GetSpawnedActors => actorFactory.GetSpawnedObjects;
+    public void CleanAll()
+    {
+        actorFactory.Clear();
+    }
     #endregion
 
     #region Attack Handler Method

@@ -57,9 +57,10 @@ public class BackgroundManager : TSingletonMono<BackgroundManager>
     {
         isActive = false;
         this.followTarget = null;
-        bgMoveThreshold = 0;
+        bgMoveThreshold = GameConst.BackgroundOffsetX;
         foreach (var background in backgrounds)
             background.CleanBackground();
+        ResetPosition();
     }
     void CheckMoveBackground()
     {
@@ -79,5 +80,14 @@ public class BackgroundManager : TSingletonMono<BackgroundManager>
         backgrounds[inactiveIndex].gameObject.SetActive(false);
     }
     #endregion
-
+    void ResetPosition()
+    {
+        backgroundOrderQueue.Clear();
+        for (int i = 0; i < GameConst.MaxBackgroundCount; i++)
+        {
+            var position = new Vector3(GameConst.BackgroundOffsetX * (i - 1), 0, 0);
+            backgrounds[i].transform.position = position;
+            backgroundOrderQueue.Enqueue(i);
+        }
+    }
 }
