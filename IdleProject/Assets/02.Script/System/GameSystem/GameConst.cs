@@ -20,7 +20,7 @@ public class GameConst
     #region Camera
     public static float DefaultOrthoSize = 5;
     public static Vector2 defaultResolution = new Vector2(1080, 1920);
-    public static Vector3 ViewOffset = new Vector3(0f, -2f,-10f);
+    public static Vector3 ViewOffset = new Vector3(2f, -2f,-10f);
     public static float YOffSet = -2f;
     #endregion
 

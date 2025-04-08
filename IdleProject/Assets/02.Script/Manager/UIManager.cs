@@ -37,7 +37,7 @@ public class UIManager : TSingletonMono<UIManager>
         if (scaler != null)
         {
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1080,1920);
+            scaler.referenceResolution = GameConst.defaultResolution;
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
             scaler.matchWidthOrHeight = 1F;
         }
