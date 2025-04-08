@@ -10,6 +10,7 @@ namespace Data
         public readonly int SuccessIndex;
         public readonly int FailedIndex;
         public readonly int[] EnemyIndexArr;
+        public readonly int EnemyCount;
         readonly FloatFormulaCalculator enemyHPFormula;
         readonly FloatFormulaCalculator enemyAttackDamageFormula;
         readonly IntFormulaCalculator enemyGoldFormula;
@@ -22,6 +23,7 @@ namespace Data
             SuccessIndex = int.Parse(dataPair["SuccessIndex"]);
             FailedIndex = int.Parse(dataPair["FailedIndex"]);
             EnemyIndexArr = System.Array.ConvertAll(dataPair["EnemyIndex"].Split('|'), v => int.Parse(v));
+            EnemyCount = int.Parse(dataPair["EnemyCount"]);
             enemyHPFormula = new FloatFormulaCalculator(dataPair["EnemyMaxHP"]);
             enemyAttackDamageFormula = new FloatFormulaCalculator(dataPair["EnemyAttackDamage"]);
             enemyGoldFormula = new IntFormulaCalculator(dataPair["EnemyGoldAmount"]);
