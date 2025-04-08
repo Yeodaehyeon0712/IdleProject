@@ -24,7 +24,8 @@ public class Enemy : Actor
     {
         var snapShot = SnapShotDataProperty.Instance;
         var gold = DataManager.StageTable[snapShot.GetCurrentStage()].GetGold();
-        snapShot.GetData.GoldAmount += gold;
+        snapShot.GoldAmount += gold;
+        
     }
     public override void DefaultAttack()
     {

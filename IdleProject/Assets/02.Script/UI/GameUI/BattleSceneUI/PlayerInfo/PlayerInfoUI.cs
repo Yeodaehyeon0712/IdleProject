@@ -35,5 +35,8 @@ public class PlayerInfoUI : BaseUI
         
     }
     #endregion
-
+    public void SetGoldCount(int count)
+    {
+        text_GoldCount.text = count.ToString();
+    }
 }

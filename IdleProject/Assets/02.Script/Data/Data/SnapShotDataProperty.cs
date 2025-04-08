@@ -16,7 +16,7 @@ public class SnapShotDataProperty : JsonSerializableData<SnapShotData, SnapShotD
     protected override void SetDefaultValue()
     {
         data = new SnapShotData();
-        foreach(eStatusType a in System.Enum.GetValues(typeof(eStatusType)))
+        foreach (eStatusType a in System.Enum.GetValues(typeof(eStatusType)))
         {
             data.statusLevelDic[a] = 1;
         }
@@ -29,10 +29,20 @@ public class SnapShotDataProperty : JsonSerializableData<SnapShotData, SnapShotD
     public void StatusLevelUp(eStatusType type, int goldCost)
     {
         data.GoldAmount -= goldCost;
-        data.statusLevelDic[type]+=1;
+        data.statusLevelDic[type] += 1;
     }
     public int GetCurrentStage()
     {
         return data.CurrentStageIndex;
     }
+    public int GoldAmount
+    {
+        get => data.GoldAmount;
+        set
+        {
+            data.GoldAmount += value;
+            UIManager.Instance.PlayerInfoUI.SetGoldCount(data.GoldAmount);
+        }
+    }   
+
 }
