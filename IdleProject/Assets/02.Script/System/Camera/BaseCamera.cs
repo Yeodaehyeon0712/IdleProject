@@ -26,14 +26,14 @@ public class BaseCamera : MonoBehaviour
     {
         _camera = GetComponentInChildren<Camera>();
         fadeEffectProcess = GetComponent<FadePostProcess>();
-
         currentType = 0;
-        transform.position = GameConst.ViewOffset;
 
         float targetRate = GameConst.defaultResolution.x / GameConst.defaultResolution.y;
         float screenRate = Screen.safeArea.width / Screen.safeArea.height;
+        float scale = targetRate / screenRate;
 
-        Camera.orthographicSize = 6.4f * screenRate / targetRate;
+        transform.position = new Vector3(0, GameConst.YOffSet * scale, -10);
+        Camera.orthographicSize = GameConst.DefaultOrthoSize * scale;
         return this;
     }
     #endregion
