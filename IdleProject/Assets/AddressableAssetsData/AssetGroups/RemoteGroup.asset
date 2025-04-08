@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     - Background
+  - m_GUID: 87df5a90c8c290647ac12a73c0fc9a88
+    m_Address: Animator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    - Animator
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f09ea225085418e44bb3316295057c06, type: 2}
   m_SchemaSet:

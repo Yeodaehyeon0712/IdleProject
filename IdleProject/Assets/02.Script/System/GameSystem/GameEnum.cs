@@ -80,6 +80,7 @@ enum eAddressableState
     LoadMemory,
     TableMemory,
     BackgroundMemory,
+    AnimatorMemory,
     Complete,
 }
 #endregion

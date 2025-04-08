@@ -7,5 +7,13 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Crab
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: c557a2e743072364cb98dbf69031700f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 24ecfa33bd67e7648ab2ec349d287a0e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 711c651110347cd4082fe4a6da20427b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b00ff79bc5cc2af489aa936c65d68867, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4a829a3b6e3de994984ad662838f0250, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ce9b51aeb21289b42896768aeba46a71, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4a0fdc5d048443746967c983ac6fd187, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 619938b517f66b6418bb5a7c415203e6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: aed3577331d4bc3459fdfa0709a7e5c1, type: 2}

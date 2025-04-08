@@ -18,6 +18,7 @@ public class AddressableSystem
     Dictionary<string, GameObject> assetResourceContainer = new Dictionary<string, GameObject>();
     Dictionary<string, TextAsset> tableContainer = new Dictionary<string, TextAsset>();
     Dictionary<string, Sprite> backgroundContainer = new Dictionary<string,Sprite>();
+    Dictionary<string, SOAnimatorContainer> animatorContainer = new Dictionary<string, SOAnimatorContainer>();
 
     #endregion
 
@@ -111,6 +112,7 @@ public class AddressableSystem
 
         await LoadAssetAsync(eAddressableState.TableMemory,tableContainer);
         await LoadAssetAsync(eAddressableState.BackgroundMemory, backgroundContainer);
+        await LoadAssetAsync(eAddressableState.AnimatorMemory, animatorContainer);
 
         state = eAddressableState.Complete;
     }
@@ -177,6 +179,16 @@ public class AddressableSystem
         }
 
         Debug.LogError($"Background with resource path {key} not found in the background container.");
+        return null;
+    }
+    public static RuntimeAnimatorController GetAnimator(string key)
+    {
+        if (DataManager.AddressableSystem.animatorContainer.TryGetValue(key, out var animatorContainer))
+        {
+            return animatorContainer.Animator;
+        }
+
+        Debug.LogError($"Animator with resource path {key} not found in the animator container.");
         return null;
     }
     #endregion
