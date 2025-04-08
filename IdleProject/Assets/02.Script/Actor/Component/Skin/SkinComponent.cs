@@ -17,9 +17,10 @@ public class SkinComponent : BaseComponent
         animator = skin.GetComponent<Animator>();
         animator.runtimeAnimatorController = controller;       
 
-        var speedHash = Animator.StringToHash("Speed");
-        animatorHashDic.Add(eCharacterAnimState.Move, speedHash);
-        animatorHashDic.Add(eCharacterAnimState.Idle, speedHash);
+        var moveHash = Animator.StringToHash("AnimState");
+        animatorHashDic.Add(eCharacterAnimState.Move, moveHash);
+        animatorHashDic.Add(eCharacterAnimState.Idle, moveHash);
+        animatorHashDic.Add(eCharacterAnimState.Attack, Animator.StringToHash("Attack"));
         animatorHashDic.Add(eCharacterAnimState.Hit, Animator.StringToHash("Hit"));
         animatorHashDic.Add(eCharacterAnimState.Death, Animator.StringToHash("Death"));
     }

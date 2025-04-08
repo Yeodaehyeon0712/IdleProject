@@ -24,6 +24,7 @@ public enum eCharacterAnimState
 {
     Idle ,
     Move ,
+    Attack,
     Hit ,
     Death ,
 }
