@@ -9,6 +9,7 @@ public class GameConst
     public static int RaceStageCount = 5;
     public static int BackgroundOffsetX = 9;
     public static int MaxBackgroundCount = 3;
+    public const float SpawnIntervalDistanceSqr = 5*5;
     #endregion
 
     #region Data

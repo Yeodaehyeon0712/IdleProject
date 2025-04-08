@@ -10,22 +10,27 @@ public class NormalStageFramework : StageFramework
     public int CurrentStageProgress => currentStageProgress;
     int currentStageProgress;
     #endregion
+
+    #region Framework Method
     protected override async UniTask ProcessFrameworkAsync(CancellationToken token)
     {
 
         switch (Data.Type)
         {
             case eStageType.Race:
-                await RacePorccessAsync();
+                await RacePorccessAsync(token);
                 break;
             case eStageType.Boss:
                 break;
             case eStageType.Loop:
-                await LoopPorccessAsync();
+                await LoopPorccessAsync(token);
                 break;
         }
     }
-    async UniTask RacePorccessAsync()
+    #endregion
+
+    #region Normal Stage Method
+    async UniTask RacePorccessAsync(CancellationToken token)
     {
         Debug.Log("프로세스 시작");
         currentStageProgress = 0;
@@ -38,40 +43,62 @@ public class NormalStageFramework : StageFramework
                 frameworkState = eStageFrameworkState.Victory;
                 break;
             }
-            await SubProcessAsync();
+            await SubProcessAsync(token);
         }
     }
-    async UniTask SubProcessAsync()
-    {
-        Debug.Log(" 서브 프로세스 시작");
-
-        ////플레이어의 위치로부터 5가 떨어진 곳을 설정
-        //Vector2 playerPosition = Vector2.zero;//Player.PlayerCharacter.Transform.position;
-        //Vector2 spawnPosition = playerPosition + Vector2.left * 5f;
-
-        ////플레이어가 해당 위치에 도달하기까지 대기
-        //while ((spawnPosition - playerPosition).sqrMagnitude < 15*15)
-        //{
-        //    //if (Player.PlayerCharacter.FSMState == eFSMState.Death)
-        //    //{
-        //    //    _currentContentsResultState = eContentResultState.Defeat;
-        //    //    yield break;
-        //    //}
-        //    //playerPosition = Player.PlayerCharacter.Transform.position;
-        //    await UniTask.Yield();
-        //}
-        ////스폰
-
-        ////이후 캐릭터와 소환된 적들의 죽음을 비교한다 .
-        await UniTask.WaitForSeconds(1f);
-        Debug.Log("몬스터 소환");
-    }
-    //계속 소환될것이다 .
-    async UniTask LoopPorccessAsync()
+    async UniTask LoopPorccessAsync(CancellationToken token)
     {
         while (frameworkState == eStageFrameworkState.InProgress)
         {
-            await SubProcessAsync();
+            await SubProcessAsync(token);
         }
     }
+    #endregion
+
+    #region SubProcessMethod
+    async UniTask SubProcessAsync(CancellationToken token)
+    {
+        await WaitUntilSpawnableDistanceAsync(token);
+        //await SpawnGroupAsync(token);
+        //while (true)
+        //{
+        //    await UniTask.Yield(token);
+        //}
+    }
+    async UniTask WaitUntilSpawnableDistanceAsync(CancellationToken token)
+    {
+        Transform playerTransform = Player.PlayerCharacter.transform;
+        float requiredDistanceSqr = GameConst.SpawnIntervalDistanceSqr;
+        Vector3 startPosition = playerTransform.position;
+
+        while (true)
+        {
+            float movedDistanceSqr = (playerTransform.position - startPosition).sqrMagnitude;
+            if (movedDistanceSqr >= requiredDistanceSqr)
+                break;
+
+            await UniTask.Yield(token);
+        }
+    }
+
+    
+    async UniTask SpawnGroupAsync(CancellationToken token)
+    {
+        var stageData = DataManager.StageTable[stageIndex];
+        var spawnTasks = new List<UniTask>();
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 randomPos = new Vector3()
+            {
+                x = 5 + i,
+                y = 0f,
+                z = 0f,
+            };
+            int selectRandom = Random.Range(0, stageData.EnemyIndexArr.Length);
+
+            spawnTasks.Add(ActorManager.Instance.SpawnEnemy(stageData.EnemyIndexArr[selectRandom], randomPos + Player.PlayerCharacter.transform.position));
+        }
+        await UniTask.WhenAll(spawnTasks);
+    }
+    #endregion
 }
