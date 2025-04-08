@@ -143,7 +143,7 @@ public class AddressableSystem
 
             var loadTask = Addressables.LoadAssetAsync<T>(loadKey).ToUniTask().ContinueWith(task =>
             {
-                container.Add(location.PrimaryKey, task);
+                container.Add(loadKey, task);
             });
 
             loadingTasks.Add(loadTask);
