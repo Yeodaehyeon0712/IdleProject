@@ -20,7 +20,7 @@ public class UIManager : TSingletonMono<UIManager>
     {
         _gameUI = Instantiate(Resources.Load<GameUI>("UI/GameUI"), transform);
         _gameUI.Initialize();     
-        InitCanvas(_gameUI);
+        InitCanvas(_gameUI, CameraManager.Instance.GetCamera(eCameraType.UICamera).Camera);
         IsLoad = true;
     }
     void InitCanvas(Component root,Camera targetCamera=null)

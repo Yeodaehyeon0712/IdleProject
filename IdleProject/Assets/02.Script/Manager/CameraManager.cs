@@ -52,13 +52,17 @@ public class CameraManager : TSingletonMono<CameraManager>
     #endregion
 
     #region Fade Method
-    public void FadeOn(eCameraFadeType type, float durationTime, System.Action action)
+    public void FadeOn(bool useUI,eCameraFadeType type, float durationTime, System.Action action)
     {
         cameraDic[eCameraType.MainCamera].Fade(isOn:true,type, durationTime, action);
+        if(useUI)
+            cameraDic[eCameraType.UICamera].Fade(isOn: true, type, durationTime, null);
     }
     public void FadeOff(bool useUI, eCameraFadeType type, float durationTime, System.Action action)
     {
         cameraDic[eCameraType.MainCamera].Fade(isOn: false, type, durationTime, action);
+        if (useUI)
+            cameraDic[eCameraType.UICamera].Fade(isOn: false, type, durationTime, null);
     }
     #endregion
 }

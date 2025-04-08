@@ -46,7 +46,7 @@ public abstract class StageFramework
         CurrentFrameworkState = eStageFrameworkState.SetUp;
         this.stageIndex = stageIndex;
         //Camera
-        CameraManager.Instance.FadeOn(eCameraFadeType.BattleWipe, 1f, null);
+        CameraManager.Instance.FadeOn(true,eCameraFadeType.BattleWipe, 1f, null);
         await UniTask.WaitForSeconds(1f);
         //UI
         UIManager.Instance.Stage.CurrentStage = Data.Type;
@@ -92,7 +92,7 @@ public abstract class StageFramework
     void StartFramework()
     {
         Debug.Log("프레임 워크 작동 시작");
-        CameraManager.Instance.FadeOff(false, eCameraFadeType.BattleWipe, 1f, null);
+        CameraManager.Instance.FadeOff(true, eCameraFadeType.BattleWipe, 1f, null);
         //액터를 동작시키는 정도?
     }
     protected abstract UniTask ProcessFrameworkAsync(CancellationToken token);
