@@ -8,7 +8,7 @@ public class IdleState :BaseState
     public IdleState(Actor owner) : base(owner) { }
     public override void OnStateEnter()
     {
-        
+        owner.Skin.SetAnimationInt(eCharacterAnimState.Idle);
     }
 
     public override void OnStateExit()

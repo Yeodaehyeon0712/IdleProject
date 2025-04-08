@@ -18,7 +18,7 @@ public class MoveState :BaseState
     }
     public override void OnStateEnter()
     {
-
+        owner.Skin.SetAnimationInt(eCharacterAnimState.Move);
     }
     public override void OnStateStay(float deltaTime)
     {

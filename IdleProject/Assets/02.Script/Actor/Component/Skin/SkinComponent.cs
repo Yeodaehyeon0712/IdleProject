@@ -40,5 +40,11 @@ public class SkinComponent : BaseComponent
         currentAnim = nextState;
         animator.SetFloat(animatorHashDic[currentAnim], value);
     }
+    public void SetAnimationInt(eCharacterAnimState state)
+    {
+        var value =( state == eCharacterAnimState.Move) ? 1 : 0;
+        currentAnim = state;
+        animator.SetInteger(animatorHashDic[currentAnim], value);
+    }
     #endregion
 }
