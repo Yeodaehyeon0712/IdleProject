@@ -133,13 +133,14 @@ public abstract class StageFramework
     async UniTask ExitStage(float time)
     {
         await UniTask.WaitForSeconds(time);
+        var lastState = CurrentFrameworkState;
+        CurrentFrameworkState = eStageFrameworkState.Clean;
 
-        if (CurrentFrameworkState == eStageFrameworkState.Victory)
+        if (lastState == eStageFrameworkState.Victory)
             StageManager.Instance.SetupStage(eContentsType.Normal, Data.SuccessIndex);
         else
             StageManager.Instance.SetupStage(eContentsType.Normal, Data.FailedIndex);
 
-        CurrentFrameworkState = eStageFrameworkState.Clean;
     }
     #endregion
 }
