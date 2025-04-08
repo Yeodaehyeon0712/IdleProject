@@ -59,11 +59,11 @@ public class NormalStageFramework : StageFramework
     async UniTask SubProcessAsync(CancellationToken token)
     {
         await WaitUntilSpawnableDistanceAsync(token);
-        //await SpawnGroupAsync(token);
-        //while (true)
-        //{
-        //    await UniTask.Yield(token);
-        //}
+        await SpawnGroupAsync(token);
+        while (true)
+        {
+            await UniTask.Yield(token);
+        }
     }
     async UniTask WaitUntilSpawnableDistanceAsync(CancellationToken token)
     {
@@ -86,17 +86,11 @@ public class NormalStageFramework : StageFramework
     {
         var stageData = DataManager.StageTable[stageIndex];
         var spawnTasks = new List<UniTask>();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < stageData.EnemyCount; i++)
         {
-            Vector3 randomPos = new Vector3()
-            {
-                x = 5 + i,
-                y = 0f,
-                z = 0f,
-            };
             int selectRandom = Random.Range(0, stageData.EnemyIndexArr.Length);
-
-            spawnTasks.Add(ActorManager.Instance.SpawnEnemy(stageData.EnemyIndexArr[selectRandom], randomPos + Player.PlayerCharacter.transform.position));
+            var positioin = Player.PlayerCharacter.transform.position+ (Vector3.right *i)+(Vector3.right*5);
+            spawnTasks.Add(ActorManager.Instance.SpawnEnemy(stageData.EnemyIndexArr[selectRandom],positioin));
         }
         await UniTask.WhenAll(spawnTasks);
     }
