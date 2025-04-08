@@ -66,6 +66,8 @@ public enum eTableName
     LocalizingTable = 1 << 0,
     StageTable=1<<1,
     StatusTable=1<<2,
+    CharacterTable=1<<3,
+    EnemyTable=1<<4,
     All = ~0,
 }
 

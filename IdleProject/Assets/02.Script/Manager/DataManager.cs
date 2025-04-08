@@ -8,6 +8,8 @@ public class DataManager : TSingletonMono<DataManager>
     public static LocalizingTable LocalizingTable;
     public static StageTable StageTable;
     public static StatusTable StatusTable;
+    public static CharacterTable CharacterTable;
+    public static EnemyTable EnemyTable;
 
     protected override void OnInitialize()
     {
@@ -17,6 +19,10 @@ public class DataManager : TSingletonMono<DataManager>
         StageTable.Reload();
         StatusTable = LoadTable<StatusTable>(eTableName.StatusTable);
         StatusTable.Reload();
+        CharacterTable = LoadTable<CharacterTable>(eTableName.CharacterTable);
+        CharacterTable.Reload();
+        EnemyTable = LoadTable<EnemyTable>(eTableName.EnemyTable);
+        EnemyTable.Reload();
         IsLoad = true;
     }
     public void InitAddressableSystem()
