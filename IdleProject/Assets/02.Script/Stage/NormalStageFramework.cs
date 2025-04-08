@@ -22,6 +22,7 @@ public class NormalStageFramework : StageFramework
                 await RacePorccessAsync(token);
                 break;
             case eStageType.Boss:
+                await BossPorccessAsync(token);
                 break;
             case eStageType.Loop:
                 await LoopPorccessAsync(token);
@@ -31,6 +32,14 @@ public class NormalStageFramework : StageFramework
     #endregion
 
     #region Normal Stage Method
+    async UniTask BossPorccessAsync(CancellationToken token)
+    {
+        while (frameworkState == eStageFrameworkState.InProgress)
+        {
+            await SubProcessAsync(token);
+            frameworkState = eStageFrameworkState.Victory;
+        }
+    }
     async UniTask RacePorccessAsync(CancellationToken token)
     {
         Debug.Log("프로세스 시작");
