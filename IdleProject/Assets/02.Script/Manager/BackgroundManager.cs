@@ -57,6 +57,7 @@ public class BackgroundManager : TSingletonMono<BackgroundManager>
     {
         isActive = false;
         this.followTarget = null;
+        bgMoveThreshold = 0;
         foreach (var background in backgrounds)
             background.CleanBackground();
     }

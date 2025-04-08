@@ -127,6 +127,7 @@ public abstract class StageFramework
     //이건 요소들을 모두 초기화 하고 다음 스테이지로 나아가기 위함
     public void CleanFramework()
     {
+        BackgroundManager.Instance.CleanBackground();
         //UIManager.Instance.GameUI.CloseUIByFlag(eUI.Controller | eUI.BattleState);
         ExitStage(1f).Forget();
     }
