@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 
@@ -58,14 +59,11 @@ public class NormalStageFramework : StageFramework
     #region SubProcessMethod
     async UniTask SubProcessAsync(CancellationToken token)
     {
-        await WaitUntilSpawnableDistanceAsync(token);
+        await WaitSpawnableDistanceAsync(token);
         await SpawnGroupAsync(token);
-        while (true)
-        {
-            await UniTask.Yield(token);
-        }
+        await WaitAllEnemiesDeadAsync(token);
     }
-    async UniTask WaitUntilSpawnableDistanceAsync(CancellationToken token)
+    async UniTask WaitSpawnableDistanceAsync(CancellationToken token)
     {
         Transform playerTransform = Player.PlayerCharacter.transform;
         float requiredDistanceSqr = GameConst.SpawnIntervalDistanceSqr;
@@ -80,19 +78,39 @@ public class NormalStageFramework : StageFramework
             await UniTask.Yield(token);
         }
     }
-
-    
+    Actor[] enemyList;
     async UniTask SpawnGroupAsync(CancellationToken token)
     {
         var stageData = DataManager.StageTable[stageIndex];
-        var spawnTasks = new List<UniTask>();
+        var spawnTasks = new List<UniTask<Enemy>>();
+        enemyList = new Actor[stageData.EnemyCount];
+
         for (int i = 0; i < stageData.EnemyCount; i++)
         {
             int selectRandom = Random.Range(0, stageData.EnemyIndexArr.Length);
             var positioin = Player.PlayerCharacter.transform.position+ (Vector3.right *i)+(Vector3.right*5);
             spawnTasks.Add(ActorManager.Instance.SpawnEnemy(stageData.EnemyIndexArr[selectRandom],positioin));
         }
-        await UniTask.WhenAll(spawnTasks);
+        enemyList = await UniTask.WhenAll(spawnTasks);
+    }
+    //To Do :: 추후 수정 필요
+    async UniTask WaitAllEnemiesDeadAsync(CancellationToken token)
+    {
+        while (true)
+        {
+            bool allDead = true;
+            for (int i = 0; i < enemyList.Length; i++)
+            {
+                if (enemyList[i].FSMState != eFSMState.Death)
+                {
+                    allDead = false;
+                    break;
+                }
+            }
+            if (allDead)
+                break;
+            await UniTask.Yield();
+        }
     }
     #endregion
 }
