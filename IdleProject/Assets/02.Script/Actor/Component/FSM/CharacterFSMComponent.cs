@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class CharacterFSMComponent : FSMComponent
 {
     public CharacterFSMComponent(Actor owner) : base(owner) { }
