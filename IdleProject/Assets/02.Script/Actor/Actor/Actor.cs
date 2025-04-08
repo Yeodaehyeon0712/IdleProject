@@ -29,6 +29,7 @@ public abstract class Actor : PoolingObject<eActorType>
     {
         base.Spawn(worldID, position);
         currentHP = Status.GetStatus(eStatusType.MaxHP);
+        FSM.State = eFSMState.Idle;
     }
     protected override void ReturnToPool()
     {
