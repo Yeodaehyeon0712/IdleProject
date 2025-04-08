@@ -8,7 +8,7 @@ public class EnemyFSMComponent :FSMComponent
     public override void GenerateFSMState()
     {
         fsmDictionary.Add(eFSMState.Idle, new IdleState(owner));
-        //fsmDictionary.Add(eFSMState.Battle, new IdleState(owner));
-        //fsmDictionary.Add(eFSMState.Death, new IdleState(owner));
+        fsmDictionary.Add(eFSMState.Battle, new IdleState(owner));
+        fsmDictionary.Add(eFSMState.Death, new IdleState(owner));
     }
 }

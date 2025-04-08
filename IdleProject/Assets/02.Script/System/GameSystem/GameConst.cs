@@ -10,6 +10,8 @@ public class GameConst
     public static int BackgroundOffsetX = 9;
     public static int MaxBackgroundCount = 3;
     public const float SpawnIntervalDistanceSqr = 5*5;
+    public const float BattleDistanceSqr = 1*1;
+    public const float ActorSearchDistanceSqr = 1.5f * 1.5f;
     #endregion
 
     #region Data

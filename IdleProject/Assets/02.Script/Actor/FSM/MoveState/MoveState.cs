@@ -5,8 +5,7 @@ using UnityEngine;
 public class MoveState :BaseState
 {
     #region Fields
-    //추후 수정
-    float _currentRange=5f;
+
     #endregion
 
     #region State Method
@@ -14,7 +13,7 @@ public class MoveState :BaseState
     {
         var tool = fsm.ActorSearchingTool;
         tool.AddConditionCharacterType(eActorType.Enemy).AddConditionFSMState(~eFSMState.Death)
-            .AddConditionDistance(owner, _currentRange * _currentRange);
+            .AddConditionDistance(owner, GameConst.ActorSearchDistanceSqr);
     }
     public override void OnStateEnter()
     {
@@ -32,7 +31,8 @@ public class MoveState :BaseState
                 fsm.Target = null; return;
             }
 
-            if (Mathf.Abs(owner.transform.position.x - fsm.Target.transform.position.x) > _currentRange)
+            float sqrDistance = (owner.transform.position - fsm.Target.transform.position).sqrMagnitude;
+            if (sqrDistance > GameConst.BattleDistanceSqr)
                 OnMove(deltaTime);
             else
                 fsm.State = eFSMState.Battle;
