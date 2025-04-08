@@ -14,7 +14,9 @@ public abstract class Actor : PoolingObject<eActorType>
     [SerializeField] protected FSMComponent fsmComponent;
     public eFSMState FSMState => fsmComponent.State;
     //Stat Fields
-    [SerializeField] public float CurrentHP { get => currentHP; set => currentHP = value; }
+    [SerializeField] public float CurrentHP { get => currentHP; set { currentHP = value; OnHpChange(); } }
+    protected virtual void OnHpChange() { }
+
     [SerializeField] protected float currentHP;
     #endregion
 
@@ -28,7 +30,7 @@ public abstract class Actor : PoolingObject<eActorType>
     public override void Spawn(uint worldID, Vector2 position)
     {
         base.Spawn(worldID, position);
-        currentHP = Status.GetStatus(eStatusType.MaxHP);
+        CurrentHP = Status.GetStatus(eStatusType.MaxHP);
         FSM.State = eFSMState.Idle;
     }
     protected override void ReturnToPool()
@@ -54,9 +56,9 @@ public abstract class Actor : PoolingObject<eActorType>
     public virtual void Hit(in AttackHandler attackHandler)
     {
         double damage = attackHandler.Damage;
-        currentHP -= (float)damage;
+        CurrentHP -= (float)damage;
 
-        if (currentHP <= 0f)
+        if (CurrentHP <= 0f)
             Death();
         else
             HitAnimation();   
@@ -64,7 +66,7 @@ public abstract class Actor : PoolingObject<eActorType>
     protected virtual void HitAnimation() { }
     public void Recovery(in AttackHandler attackHandler)
     {
-        currentHP = System.Math.Clamp(currentHP - (float)attackHandler.Damage, 0, statusComponent.GetStatus(eStatusType.MaxHP));
+        CurrentHP = System.Math.Clamp(currentHP - (float)attackHandler.Damage, 0, statusComponent.GetStatus(eStatusType.MaxHP));
     }
     public virtual void Death(float time = 2.5f)
     {

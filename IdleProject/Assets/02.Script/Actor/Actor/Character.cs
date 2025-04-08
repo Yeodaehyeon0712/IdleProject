@@ -19,6 +19,10 @@ public class Character : Actor
         base.Death(time);
         Timer.SetTimer(time, true, () => StageManager.Instance.StopStage(skipResult: false));
     }
+    protected override void OnHpChange()
+    {
+        UIManager.Instance.PlayerInfoUI.SetHPPercentage(currentHP / Status.GetStatus(eStatusType.MaxHP));
+    }
     public override void DefaultAttack()
     {
         if (FSM.State == eFSMState.Death) return;

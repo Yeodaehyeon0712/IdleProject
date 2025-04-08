@@ -8,6 +8,7 @@ public class SnapShotData
     public Dictionary<eStatusType, int> statusLevelDic=new Dictionary<eStatusType, int>();
     public int CurrentStageIndex;
     public int GoldAmount;
+    public int GemAmount;
 }
 //Have to Change Save In Server 
 public class SnapShotDataProperty : JsonSerializableData<SnapShotData, SnapShotDataProperty>
@@ -43,6 +44,15 @@ public class SnapShotDataProperty : JsonSerializableData<SnapShotData, SnapShotD
             data.GoldAmount += value;
             UIManager.Instance.PlayerInfoUI.SetGoldCount(data.GoldAmount);
         }
-    }   
+    }
+    public int GemAmount
+    {
+        get => data.GemAmount;
+        set
+        {
+            data.GoldAmount += value;
+            UIManager.Instance.PlayerInfoUI.SetGemCount(data.GemAmount);
+        }
+    }
 
 }
