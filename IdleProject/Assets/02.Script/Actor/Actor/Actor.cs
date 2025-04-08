@@ -64,7 +64,8 @@ public abstract class Actor : PoolingObject<eActorType>
         double damage = attackHandler.Damage;
         CurrentHP -= (float)damage;
 
-        UIManager.Instance.FieldUI.SetDamageText(attachment.GetAttachmentElement(eAttachmentTarget.OverHead).Transform.position, attackHandler.Damage, attackHandler.IsCritical,type);
+        var bodyAttachment = attachment.GetAttachmentElement(eAttachmentTarget.Body);
+        UIManager.Instance.FieldUI.SetDamageText(bodyAttachment.Transform.position, attackHandler.Damage, attackHandler.IsCritical,type);
         if (CurrentHP <= 0f)
             Death();
         else

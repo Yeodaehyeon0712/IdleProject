@@ -8,6 +8,8 @@ public class UIManager : TSingletonMono<UIManager>
     #region Fields
     public GameUI GameUI => _gameUI;
     GameUI _gameUI;
+    public FieldUI FieldUI => _fieldUI;
+    FieldUI _fieldUI;
 
     //Battle Scene UI
     public MainUI MainUI => _gameUI.Main;
@@ -21,6 +23,10 @@ public class UIManager : TSingletonMono<UIManager>
 
     protected override void OnInitialize()
     {
+        _fieldUI = Instantiate(Resources.Load<FieldUI>("UI/FieldUI"), transform);
+        _fieldUI.Initialize();
+        InitCanvas(_fieldUI, CameraManager.Instance.GetCamera(eCameraType.MainCamera).Camera);
+
         _gameUI = Instantiate(Resources.Load<GameUI>("UI/GameUI"), transform);
         _gameUI.Initialize();     
         InitCanvas(_gameUI, CameraManager.Instance.GetCamera(eCameraType.UICamera).Camera);
