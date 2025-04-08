@@ -27,26 +27,24 @@ public abstract class Actor : PoolingObject<eActorType>
     }
     protected override void ReturnToPool()
     {
-
+        ActorManager.Instance.RegisterActorPool(worldID, type, objectID);
     }
     #endregion
 
     #region Unity API
     protected virtual void Update()
     {
-        UpdateComponent(TimeManager.DeltaTime);
+        if (TimeManager.Instance.IsActiveTimeFlow == false) return;
+        OnUpdateComponent(TimeManager.DeltaTime);
     }
     protected virtual void FixedUpdate()
     {
+        if (TimeManager.Instance.IsActiveTimeFlow==false) return;
         fsmComponent.FixedComponentUpdate(TimeManager.FixedDeltaTime);
     }
     #endregion
 
     #region Actor Method
-    public virtual void Death(float time = 2.5f)
-    {
-        Clean(time);
-    }
     public virtual void Hit(in AttackHandler attackHandler)
     {
         double damage = attackHandler.Damage;
@@ -61,6 +59,11 @@ public abstract class Actor : PoolingObject<eActorType>
     {
         currentHP = System.Math.Clamp(currentHP - (float)attackHandler.Damage, 0, statusComponent.GetStatus(eStatusType.MaxHP));
     }
+    public virtual void Death(float time = 2.5f)
+    {
+        FSM.State = eFSMState.Death;
+        Clean(time);
+    }
     #endregion
 
     #region Component Method
@@ -74,21 +77,10 @@ public abstract class Actor : PoolingObject<eActorType>
         }
         componentDictionary.Add(component.ComponentType, component);
     }
-    void UpdateComponent(float deltaTime)
+    void OnUpdateComponent(float deltaTime)
     {
         foreach (var component in componentDictionary.Values)
             component.ComponentUpdate(deltaTime);
     }
-    public void ActiveComponent()
-    {
-        foreach (var component in componentDictionary.Values)
-            component.ActiveComponent();
-    }
-    public void InactiveComponent()
-    {
-        foreach (var component in componentDictionary.Values)
-            component.InactiveComponent();
-    }
-
     #endregion
 }
