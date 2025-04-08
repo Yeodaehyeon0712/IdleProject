@@ -25,7 +25,7 @@ public class ResultPopUpUI : PopUpUI
 
     protected override void OnRefresh()
     {
-        text_ConfirmBtnTitle.text = LocalizingManager.Instance.GetLocalizing(1);
+        text_ConfirmBtnTitle.text = LocalizingManager.Instance.GetLocalizing(502);
     }
     #endregion
 
