@@ -52,18 +52,9 @@ public abstract class StageFramework
         UIManager.Instance.Stage.CurrentStage = Data.Type;
         //Background
         BackgroundManager.Instance.SetupBackground(CameraManager.Instance.GetCamera(eCameraType.MainCamera).transform, Data.BackgroundKey);
-        //각종 요소들 소환
-        //캐릭터 - 맵 - 사운드 등등
-
         //Actor
-        //var actor = await ActorManager.Instance.SpawnCharacter(1, Vector3.zero);
-        //Player.RegisterPlayer(actor);
-
-        //Bg
-        // BackgroundManager.Instance.ShowBackgroundByStage(DataManager.StageTable[stageIndex].BackgroundPath);
-
-
-        Debug.Log("각종 스테이지에 대한 공통된 준비 완료");
+        var actor = await ActorManager.Instance.SpawnCharacter(1, Vector3.zero);
+        Player.RegisterPlayer(actor);
     }
 
     //각종 스테이지를 개시하는 단계
@@ -93,7 +84,7 @@ public abstract class StageFramework
     {
         Debug.Log("프레임 워크 작동 시작");
         CameraManager.Instance.FadeOff(true, eCameraFadeType.BattleWipe, 1f, null);
-        //액터를 동작시키는 정도?
+        Player.ActivePlayer();
     }
     protected abstract UniTask ProcessFrameworkAsync(CancellationToken token);
     #endregion

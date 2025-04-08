@@ -23,6 +23,7 @@ public abstract class Actor : PoolingObject<eActorType>
     {
         base.Initialize(type, objectID);
         InitializeComponent();
+        fsmComponent.GenerateFSMState();
     }
     protected override void ReturnToPool()
     {

@@ -7,11 +7,11 @@ public abstract class StatusComponent : BaseComponent
     #region Component Method
     public StatusComponent(Actor owner):base(owner,eComponent.StatusComponent,useUpdate:false)
     {
-
+        SetDefaultStatus();
     }
     protected override void OnComponentActive()
     {
-        SetDefaultStatus();
+             
     }
     #endregion
     #region Status Method

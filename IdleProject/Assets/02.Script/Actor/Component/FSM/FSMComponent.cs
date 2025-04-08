@@ -30,9 +30,9 @@ public abstract class FSMComponent : BaseComponent
     public FSMComponent(Actor owner) : base(owner, eComponent.FSMComponent, true)
     {
         searchingTool = new ActorSearchingTool();
-        fsmDictionary.Add(eFSMState.Idle, new IdleState(owner));
+        //GenerateFSMState(); ;
     }
-    protected abstract void GenerateFSMState();
+    public abstract void GenerateFSMState();
     protected override void OnComponentFixedUpdate(float fixedDeltaTime)
     {
         fsmDictionary[currentState].OnStateStay(fixedDeltaTime);
