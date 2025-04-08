@@ -5,7 +5,7 @@ public static class Player
     //static IngameDataProperty ingameDataProperty;
     public static bool IsLoad = false;
     public static Character PlayerCharacter;
-
+    static System.Random _random = new System.Random();
     #endregion
 
     #region Init Method
@@ -30,4 +30,19 @@ public static class Player
         PlayerCharacter = null;     
     }
     #endregion
+
+    public static double ComputeCritical(out bool isCritical)
+    {
+        isCritical = false;
+        double criticalProbability = PlayerCharacter.Status.GetStatus(eStatusType.CriticalChance);
+        if (criticalProbability < 1f)
+        {
+            if (criticalProbability > _random.NextDouble())
+                isCritical = true;
+        }
+        else
+            isCritical = true;
+
+        return isCritical ? PlayerCharacter.Status.GetStatus(eStatusType.CriticalDamage) : 1f;
+    }
 }
