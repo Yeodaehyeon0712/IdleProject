@@ -8,7 +8,7 @@ public class MainUI : BaseUI
     Dictionary<eMainUI, BaseUI> mainSubUI = new Dictionary<eMainUI, BaseUI>();
     eMainUI currentMainUI;
 
-    //StatusMainUI StatusUI;
+    public StatusMainUI StatusUI=>mainSubUI[eMainUI.Status] as StatusMainUI;
     //ItemMainUI ItemUI;
     //SkillMainUI SkillUI;
     //PartnerMainUI PartnerUI;
@@ -44,5 +44,6 @@ public class MainUI : BaseUI
     {
 
     }
+
     #endregion
 }

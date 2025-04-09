@@ -43,6 +43,7 @@ public class SnapShotDataProperty : JsonSerializableData<SnapShotData, SnapShotD
         {
             data.GoldAmount += value;
             UIManager.Instance.PlayerInfoUI.SetGoldCount(data.GoldAmount);
+            UIManager.Instance.MainUI.StatusUI.RefreshElement();
         }
     }
     public int GemAmount
